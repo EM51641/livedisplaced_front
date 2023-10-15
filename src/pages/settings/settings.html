@@ -1,0 +1,101 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+<title>Settings</title>
+{% endblock %}
+
+{% block styling %}
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='account/style.css')}}"/>
+{% endblock %}
+
+{% block scripts_imports %}
+<!-- Google Geomap Tag-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!-- fontawsome -->
+<script src="https://kit.fontawesome.com/9aa37d3e5d.js" crossorigin="anonymous"></script>
+
+<!-- Requested Data-->
+{% endblock %}
+
+{% block html_content %}
+<div class="container-fluid p-0">
+ <div class="d-flex display justify-content-center align-items-center">
+  <div class="banner shadow-lg rounded">
+    <ul class="row nav nav-tabs m-auto" id="myTab" role="tablist">
+      <li class="nav-item col-4 p-0" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
+      </li>
+      <li class="nav-item col-4 p-0" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Security</button>
+      </li>
+      <li class="nav-item col-4 p-0" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+      </li>
+    </ul>
+    <div class="tab-content m-5" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="EmailRow mb-5">
+        <div class="mrow row">
+          <div class="col-10">
+            <div class="input-group mb-5 row m-auto">
+                <div class="input-group-prepend col-4 p-0">
+                  <div class="input-group-text">Email</div>
+                </div>
+                <input class="form-control col-8" type="text" id="staticemail" placeholder="{{current_user.email}}" readonly>
+              </div>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-warning">Change</button>
+            </div>
+          </div>
+        <div class="LinkedAccountRow mb-5">
+        <div class="mrow row">
+          <div class="col-10">
+            <div class="input-group row m-auto">
+              <div class="input-group-prepend col-4 p-0">
+                <div class="input-group-text">Linked Account</div>
+              </div>
+              {% if current_user.oauth %}
+                  <input class="form-control col-8" type="text" id="staticemail" placeholder="{{current_user.oauth[0].provider | title}}" readonly>
+              {% else %}
+                  <input class="form-control col-8" type="text" id="staticemail" placeholder="None" readonly>
+              {% endif %}
+            </div>
+            </div>
+        <div class="col-2">
+          <button class="btn btn-warning">Change</button>
+        </div>
+      </div>
+    </div>
+    <div class="DeleteAccountRow mb-5">
+      <div class="d-flex col-12 justify-content-center mb-5">
+        <form method="POST" action="">
+          {{ del_form.hidden_tag() }}
+          {{ del_form.submit(class="btn btn-danger", onclick="confirm('Are you sure you want to delete your account.')") }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="mrow row mb-5">
+          <div class="col-10">
+            <div class="input-group row m-auto">
+              <div class="input-group-prepend col-5 p-0">
+                <div class="input-group-text">Password</div>
+              </div>
+              <input class="form-control col-9" type="password" id="staticpassword" placeholder="########" readonly>
+            </div>
+            </div>
+        <div class="col-2">
+          <button class="btn btn-warning">Change</button>
+        </div>
+      </div>
+      </div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
