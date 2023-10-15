@@ -1,125 +1,35 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
   entry: {
     home: [
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "home",
-        "chart-1.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "home",
-        "chart-2.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "home",
-        "chart-3.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "home",
-        "chart-4.ts"
-      ),
+      path.join( __dirname, "src/Scripts/pages/home/chart-1.ts"),
+      path.join( __dirname, "src/Scripts/pages/home/chart-2.ts"),
+      path.join( __dirname, "src/Scripts/pages/home/chart-3.ts"),
+      path.join( __dirname, "src/Scripts/pages/home/chart-4.ts"),
+      path.join( __dirname, "src/pages/home/style.css"),
     ],
-    dashboard: 
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "dashboard",
-        "dashboard.ts"
-      ),
+    dashboard:[
+      path.join( __dirname, "src/Scripts/pages/dashboard/dashboard.ts"),
+      path.join(__dirname, "src/pages/dashboard/style.css"),
+    ],
     reports: [
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "principal-bar.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "chart-1.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "chart-2.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "chart-3.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "chart-4.ts"
-      ),
-      path.join(
-        __dirname,
-        "front",
-        "src",
-        "scripts",
-        "pages",
-        "reports",
-        "chart-5.ts"
-      ),
+      path.join( __dirname, "src/Scripts/pages/reports/principal-bar.ts"),
+      path.join( __dirname, "src/Scripts/pages/reports/chart-1.ts"),
+      path.join( __dirname, "src/Scripts/pages/reports/chart-2.ts"),
+      path.join( __dirname, "src/Scripts/pages/reports/chart-3.ts"),
+      path.join( __dirname, "src/Scripts/pages/reports/chart-4.ts"),
+      path.join( __dirname, "src/Scripts/pages/reports/chart-5.ts"),
+      path.join(__dirname, "src/pages/reports/style.css"),
     ],
-    base: path.join(
-      __dirname,
-      "front",
-      "src",
-      "scripts",
-      "pages",
-      "base",
-      "base.ts"
-    ),
+    base: [
+      path.join( __dirname, "src/Scripts/pages/base/base.ts"),
+      path.join(__dirname, "src/pages/base/style.css")
+    ],
   },
   watch: true,
   watchOptions: {
@@ -135,19 +45,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: "css-loader",
-          }
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   resolve: {
-    extensions: [".js", ".ts", ".tsx"],
+    extensions: [".js", ".ts", ".tsx", ".css"],
   },
   devtool: "source-map",
   optimization: {
@@ -163,7 +66,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: "./src/pages/page/base.html",
+      template: "./src/pages/base/base.html",
       filename: "base.html",
       inject: "body",
       chunks: ["base"],
