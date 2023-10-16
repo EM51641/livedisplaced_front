@@ -1,18 +1,13 @@
-{% extends "base/base.html" %} {% block title %}
+{% extends "dist/base.html" %} {% block title %}
 <title>Home</title>
-{% endblock %} {% block styling %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='home/style.css')}}"
-/>
-{% endblock %} {% block scripts_imports %}
+{% endblock %} {% block style %}
+<link rel="stylesheet" type="text/css" href="dist/home.css" />
+{% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
   type="text/javascript"
   src="https://www.gstatic.com/charts/loader.js"
 ></script>
-
 <!-- Requested Data-->
 <script>
   const coo = "{{ coo|tojson|safe }}";
@@ -20,7 +15,7 @@
   const coa = "{{ coa|tojson|safe }}";
   const geo = "{{ geo|tojson|safe }}";
 </script>
-{% endblock %} {% block html_content %}
+{% endblock %} {% block content %}
 <div class="container-fluid p-0">
   <div class="banner title-set">
     <div class="bg-img d-flex justify-content-center align-items-center">
@@ -211,9 +206,7 @@
       </div>
     </div>
   </div>
-  <script
-    src="{{url_for('static',filename='dist/home.bundle.js') }}"
-    type="text/javascript"
-  ></script>
-  {% endblock %}
 </div>
+{% endblock %} {% block script %}
+<script src="dist/home.bundle.js" type="text/javascript"></script>
+{% endblock %}

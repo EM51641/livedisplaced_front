@@ -1,12 +1,8 @@
-{% extends "base/base.html" %} {% block title %}
+{% extends "dist/base.html" %} {% block title %}
 <title>Dashboard</title>
-{% endblock %} {% block styling %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='dashboard/style.css')}}"
-/>
-{% endblock %} {% block scripts_imports %}
+{% endblock %} {% block style %}
+<link rel="stylesheet" type="text/css" href="dashboard/style.css" />
+{% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
   type="text/javascript"
@@ -23,7 +19,7 @@
 <script>
   const jdata = "{{ data|tojson|safe }}";
 </script>
-{% endblock %} {% block html_content %}
+{% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
   <div class="large-container text-center bg-image">
     <div class="blurry">
@@ -126,8 +122,6 @@
     </div>
   </div>
 </div>
-<script
-  src="{{url_for('static',filename='dist/dashboard.bundle.js') }}"
-  type="text/javascript"
-></script>
+{% endblock %} {% block script %}
+<script src="dist/dashboard.bundle.js" type="text/javascript"></script>
 {% endblock %}
