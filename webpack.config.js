@@ -3,48 +3,59 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+
+HTML = [
+  "base.html" , "activate_account_email.html",
+  "compliance_form.html", "individual_reports.html", 
+  "privacy_policy.html", "settings.html",
+  "terms_of_use.html", "dashboard.html",
+  "home.html", "login.html", "password_lost_request.html",
+  "register.html", "reset_lost_password_email.html"
+]
+
 module.exports = {
   mode: "development",
   entry: {
     login:[
-      path.join( __dirname, "src/static/login/style.css"),
+      path.join( __dirname, "src/css/login.css"),
     ],
     register:[
-      path.join( __dirname, "src/static/register/style.css"),
+      path.join( __dirname, "src/css/register.css"),
     ],
-    password_lost_rqst:[
-      path.join( __dirname, "src/static/password_lost/style.css"),
+    password_lost_request:[
+      path.join( __dirname, "src/css/password_lost_request.css"),
     ],
     settings:[
-      path.join( __dirname, "src/static/settings/style.css"),
+      path.join( __dirname, "src/css/settings.css"),
     ],
     terms:
     [
-      path.join( __dirname, "src/static/terms/style.css"),
+      path.join( __dirname, "src/css/compliance_form.css"),
     ],
     home: [
-      path.join( __dirname, "src/Scripts/pages/home/chart-1.ts"),
-      path.join( __dirname, "src/Scripts/pages/home/chart-2.ts"),
-      path.join( __dirname, "src/Scripts/pages/home/chart-3.ts"),
-      path.join( __dirname, "src/Scripts/pages/home/chart-4.ts"),
-      path.join( __dirname, "src/pages/home/style.css"),
+      path.join( __dirname, "src/ts/home/chart-1.ts"),
+      path.join( __dirname, "src/ts/home/chart-2.ts"),
+      path.join( __dirname, "src/ts/home/chart-3.ts"),
+      path.join( __dirname, "src/ts/home/chart-4.ts"),
+      path.join( __dirname, "src/css/home.css"),
     ],
     dashboard:[
-      path.join( __dirname, "src/Scripts/pages/dashboard/dashboard.ts"),
-      path.join(__dirname, "src/static/dashboard/style.css"),
+      path.join( __dirname, "src/ts/dashboard/dashboard.ts"),
+      path.join(__dirname, "src/css/dashboard.css"),
+      
     ],
-    reports: [
-      path.join( __dirname, "src/Scripts/pages/reports/principal-bar.ts"),
-      path.join( __dirname, "src/Scripts/pages/reports/chart-1.ts"),
-      path.join( __dirname, "src/Scripts/pages/reports/chart-2.ts"),
-      path.join( __dirname, "src/Scripts/pages/reports/chart-3.ts"),
-      path.join( __dirname, "src/Scripts/pages/reports/chart-4.ts"),
-      path.join( __dirname, "src/Scripts/pages/reports/chart-5.ts"),
-      path.join(__dirname, "src/static/reports/style.css"),
+    individual_reports: [
+      path.join( __dirname, "src/ts/individual_reports/principal-bar.ts"),
+      path.join( __dirname, "src/ts/individual_reports/chart-1.ts"),
+      path.join( __dirname, "src/ts/individual_reports/chart-2.ts"),
+      path.join( __dirname, "src/ts/individual_reports/chart-3.ts"),
+      path.join( __dirname, "src/ts/individual_reports/chart-4.ts"),
+      path.join( __dirname, "src/ts/individual_reports/chart-5.ts"),
+      path.join(__dirname, "src/static/individual_reports.css"),
     ],
     base: [
-      path.join( __dirname, "src/Scripts/pages/base/base.ts"),
-      path.join(__dirname, "src/static/base/style.css")
+      path.join( __dirname, "src/ts/base/base.ts"),
+      path.join(__dirname, "src/css/base.css")
     ],
   },
   watch: true,
@@ -81,65 +92,12 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: "./src/static/base/base.html",
-      filename: "base.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/dashboard/dashboard.html",
-      filename: "dashboard.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/reports/reports.html",
-      filename: "report.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/home/home.html",
-      filename: "home.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/login/login.html",
-      filename: "login.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/login/login.html",
-      filename: "login.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/register/register.html",
-      filename: "register.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/terms/privacy_policy/privacy_policy.html",
-      filename: "privacy_policy.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/terms/compliance_form/compliance_form.html",
-      filename: "compliance_form.html",
-      inject: "body",
-      chunks: [],
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/static/terms/terms_of_use/terms_of_use.html",
-      filename: "terms_of_use.html",
-      inject: "body",
-      chunks: [],
+    ...HTML.map((filename) => {
+      return new HtmlWebpackPlugin({
+        template: `./src/html/${filename}`,
+        filename: filename,
+        chunks: [],
+      });
     }),
   ],
   output: {
