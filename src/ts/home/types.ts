@@ -1,4 +1,4 @@
-import iso2 from "../data/cntries_lst";
+import iso2 from '../data/cntries_lst';
 
 // data type of the objects involved in pie chart 1
 type top_10_coo = {
@@ -21,11 +21,9 @@ type top_10_coa = {
 };
 
 // data type of the objects involved in pie chart 2
-type AL = {
-  name_: string;
-  iso_2_: keyof typeof iso2 | "ALL";
+type TChart = {
   year: number;
-  metric: number;
+  number: number;
 };
 
 type GEO = {
@@ -38,4 +36,4 @@ type GEO = {
   iso: keyof typeof iso2;
 };
 
-export { AL, GEO, top_10_coa, top_10_coo };
+export { TChart, GEO, top_10_coa, top_10_coo };

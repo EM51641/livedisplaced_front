@@ -8,7 +8,7 @@ HTML = [
   "base.html" , "activate_account_email.html",
   "compliance_form.html", "individual_reports.html", 
   "privacy_policy.html", "settings.html",
-  "terms_of_use.html", "dashboard.html",
+  "terms_of_use.html", "traffic_between_cntries.html",
   "home.html", "login.html", "password_lost_request.html",
   "register.html", "reset_lost_password_email.html"
 ]
@@ -39,9 +39,9 @@ module.exports = {
       path.join( __dirname, "src/ts/home/chart-4.ts"),
       path.join( __dirname, "src/css/home.css"),
     ],
-    dashboard:[
-      path.join( __dirname, "src/ts/dashboard/dashboard.ts"),
-      path.join(__dirname, "src/css/dashboard.css"),
+    traffic_between_cntries:[
+      path.join( __dirname, "src/ts/traffic_between_cntries/traffic_between_cntries.ts"),
+      path.join(__dirname, "src/css/traffic_between_cntries.css"),
       
     ],
     individual_reports: [
@@ -51,7 +51,7 @@ module.exports = {
       path.join( __dirname, "src/ts/individual_reports/chart-3.ts"),
       path.join( __dirname, "src/ts/individual_reports/chart-4.ts"),
       path.join( __dirname, "src/ts/individual_reports/chart-5.ts"),
-      path.join(__dirname, "src/static/individual_reports.css"),
+      path.join(__dirname, "src/css/individual_reports.css"),
     ],
     base: [
       path.join( __dirname, "src/ts/base/base.ts"),

@@ -1,7 +1,11 @@
 {% extends "dist/base.html" %} {% block title %}
 <title>Dashboard</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dashboard/style.css" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='traffic_between_cntries.css') }}"
+/>
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,7 +21,10 @@
 
 <!-- Requested Data-->
 <script>
-  const jdata = "{{ data|tojson|safe }}";
+  const JSON_REFUGEE_OUTFLOW = '{{ refugees_outflow|tojson|safe }}';
+  const JSON_ASYLIUM_SEEKERS = '{{ asylium_seekers_outflow|tojson|safe }}';
+  const JSON_PEOPLE_OF_CONCERNS =
+    '{{ people_of_concerns_outflow|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -32,9 +39,9 @@
               <div class="flag mb-2">
                 <img
                   id="img-flag-from"
-                  src="https://flagcdn.com/h240/{{from_.iso_2 | lower}}.png"
+                  src="https://flagcdn.com/h240/{{country_of_origin.iso_2 | lower}}.png"
                   crossorigin="anonymous"
-                  alt="{{from_.name}}"
+                  alt="{{country_of_origin.name}}"
                   class="rounded img-flag"
                 />
               </div>
@@ -44,8 +51,8 @@
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected value="{{from_.iso_2}}">
-                    {{from_.name}}
+                  <option selected value="{{country_of_origin.iso_2}}">
+                    {{country_of_origin.name}}
                   </option>
                 </select>
               </div>
@@ -60,9 +67,9 @@
               <div class="flag mb-2">
                 <img
                   id="img-flag-to"
-                  src="https://flagcdn.com/h240/{{to_.iso_2 | lower}}.png"
+                  src="https://flagcdn.com/h240/{{country_of_arrival.iso_2 | lower}}.png"
                   crossorigin="anonymous"
-                  alt="{{to_.name}}"
+                  alt="{{country_of_arrival.name}}"
                   class="rounded img-flag"
                 />
               </div>
@@ -72,7 +79,9 @@
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected value="{{to_.iso_2}}">{{to_.name}}</option>
+                  <option selected value="{{country_of_arrival.iso_2}}">
+                    {{country_of_arrival.name}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -109,7 +118,7 @@
           >
             <a
               class="d-flex col-md-4 col-xl-4 col-sm-6 col-xs-6 download-row my-auto justify-content-center"
-              href="http://localhost:7070/dashboard/download/{{from_.iso_2}}/{{to_.iso_2}}"
+              href="http://localhost:7070/dashboard/download/{{country_of_origin.iso_2}}/{{country_of_arrival.iso_2}}"
             >
               <button class="row col-12 btn btn-warning" role="button">
                 <i class="fa-solid fa-download fa-lg col-2"></i>
@@ -123,5 +132,8 @@
   </div>
 </div>
 {% endblock %} {% block script %}
-<script src="dist/dashboard.bundle.js" type="text/javascript"></script>
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='traffic_between_cntries.bundle.js') }}"
+></script>
 {% endblock %}

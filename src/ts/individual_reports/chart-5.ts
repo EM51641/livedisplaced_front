@@ -1,17 +1,17 @@
 // Geo Chart
-import { coo_choices } from "../data/coa_coo_filter";
-import { geo_choices_report } from "../data/situations_lst";
-import { years_choices } from "../data/tot_arrival_filter";
-import { DIST, GoogleGeoConfig } from "../helpers/chart";
-import { getjson } from "../helpers/refresh";
-import { AppendOption, GetDomID } from "../helpers/utils";
-import { geo_option } from "../main";
+import { coo_choices } from '../data/coa_coo_filter';
+import { geo_choices_report } from '../data/situations_lst';
+import { years_choices } from '../data/tot_arrival_filter';
+import { GoogleGeoConfig, TGeo } from '../helpers/chart';
+import { getjson } from '../helpers/refresh';
+import { AppendOption, GetDomID } from '../helpers/utils';
+import { geo_option } from '../main';
 
-AppendOption("select-attribute-2", coo_choices);
-AppendOption("select-year-2", years_choices);
-AppendOption("select-coo-coa", geo_choices_report);
+AppendOption('select-attribute-2', coo_choices);
+AppendOption('select-year-2', years_choices);
+AppendOption('select-coo-coa', geo_choices_report);
 
-function urlgenerator(year: string, state: string, coo: string = "true") {
+function urlgenerator(year: string, state: string, coo: string = 'true') {
   return `${window.location.origin}/${window.location.pathname}/apiworld?year=${year}&state=${state}&coo=${coo}`;
 }
 
@@ -19,62 +19,62 @@ async function updatechart(
   year: string,
   attr: string,
   coo: string,
-  chart: GoogleGeoConfig<DIST>
+  chart: GoogleGeoConfig<TGeo>
 ) {
   // Change attribute
 
   const url = urlgenerator(year, attr, coo);
-  points = (await getjson<DIST>(url)) as DIST[];
+  points = (await getjson<TGeo>(url)) as TGeo[];
   chart.data = points;
   console.log(points);
 
   chart.reset();
-  chart.SetTable("state");
+  chart.SetTable('number');
   chart.draw();
 }
 
-const htmlelem_attr = GetDomID("select-attribute-2");
-const htmlelem_year = GetDomID("select-year-2");
-const htmlelem_coo = GetDomID("select-coo-coa");
+const htmlelem_attr = GetDomID('select-attribute-2');
+const htmlelem_year = GetDomID('select-year-2');
+const htmlelem_coo = GetDomID('select-coo-coa');
 
-declare const geo: string;
-let points: DIST[] = JSON.parse(geo);
+declare const outflow_per_cntry: string;
+let points: TGeo[] = JSON.parse(outflow_per_cntry);
 
 // load googles' package
-google.charts.load("current", {
-  packages: ["geochart"],
+google.charts.load('current', {
+  packages: ['geochart'],
 });
 
 // Launch the promise
 google.charts.setOnLoadCallback(() => {
   {
-    let chart = new GoogleGeoConfig<DIST>(points, geo_option, "geo-map-1");
-    chart.SetTable("state");
+    let chart = new GoogleGeoConfig<TGeo>(points, geo_option, 'geo-map-1');
+    chart.SetTable('number');
     chart.draw();
 
-    htmlelem_attr.addEventListener("change", function (event: Event) {
+    htmlelem_attr.addEventListener('change', function (event: Event) {
       // Change attribute
       const attr = event.target as HTMLInputElement;
-      const year = GetDomID("select-year-2") as HTMLInputElement;
-      const coo = GetDomID("select-coo-coa") as HTMLInputElement;
+      const year = GetDomID('select-year-2') as HTMLInputElement;
+      const coo = GetDomID('select-coo-coa') as HTMLInputElement;
 
       updatechart(year.value, attr.value, coo.value, chart);
     });
 
-    htmlelem_year.addEventListener("change", function (event: Event) {
+    htmlelem_year.addEventListener('change', function (event: Event) {
       // Change year
       const year = event.target as HTMLInputElement;
-      const attr = GetDomID("select-attribute-2") as HTMLInputElement;
-      const coo = GetDomID("select-coo-coa") as HTMLInputElement;
+      const attr = GetDomID('select-attribute-2') as HTMLInputElement;
+      const coo = GetDomID('select-coo-coa') as HTMLInputElement;
 
       updatechart(year.value, attr.value, coo.value, chart);
     });
 
-    htmlelem_coo.addEventListener("change", function (event: Event) {
+    htmlelem_coo.addEventListener('change', function (event: Event) {
       // Change coo
       const coo = event.target as HTMLInputElement;
-      const attr = GetDomID("select-attribute-2") as HTMLInputElement;
-      const year = GetDomID("select-year-2") as HTMLInputElement;
+      const attr = GetDomID('select-attribute-2') as HTMLInputElement;
+      const year = GetDomID('select-year-2') as HTMLInputElement;
 
       updatechart(year.value, attr.value, coo.value, chart);
     });

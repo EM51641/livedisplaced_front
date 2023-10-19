@@ -1,7 +1,11 @@
 {% extends "dist/base.html" %} {% block title %}
 <title>Register</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dist/register.css" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='register.css') }}"
+/>
 {% endblock %} {% block content %}
 <div class="container-fluid p-0">
   <div

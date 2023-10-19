@@ -20,8 +20,7 @@ function create_cookie(val = false) {
   const exp = set_expiration(86400000);
   const json_val = generate_cookie_json(val);
 
-  document.cookie = `cst_cookie=${json_val}; expires=${exp.toUTCString()}`;
-
+  document.cookie = `cst_cookie=${json_val}; expires=${exp.toUTCString()}; path=/`;
   const banner = GetDomID("cookie-consent-container");
 
   if (!banner.hidden) {

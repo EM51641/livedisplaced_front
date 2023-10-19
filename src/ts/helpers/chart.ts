@@ -1,13 +1,12 @@
-import { ChartConfiguration } from "chart.js";
-import _ from "lodash";
-import iso2 from "../data/cntries_lst";
+import { ChartConfiguration } from 'chart.js';
+import _ from 'lodash';
+import iso2 from '../data/cntries_lst';
 
 // data type of the objects involved in pie charts
-type DIST = {
-  state: number;
-  name: (typeof iso2)[keyof typeof iso2] | "Others";
+type TGeo = {
+  number: number;
+  name: (typeof iso2)[keyof typeof iso2] | 'Others';
   iso_2: keyof typeof iso2 | null;
-  year: number;
 };
 
 // Google Chart Type
@@ -28,14 +27,14 @@ type GRow = {
 type GTable = {
   cols: [
     {
-      id: "Country";
-      label: "Country";
-      type: "string";
+      id: 'Country';
+      label: 'Country';
+      type: 'string';
     },
     {
-      id: "Population Concerned";
-      label: "Population Concerned";
-      type: "number";
+      id: 'Population Concerned';
+      label: 'Population Concerned';
+      type: 'number';
     }
   ];
   rows: GRow[];
@@ -45,14 +44,14 @@ type GTable = {
 let googchartconf: GTable = {
   cols: [
     {
-      id: "Country",
-      label: "Country",
-      type: "string",
+      id: 'Country',
+      label: 'Country',
+      type: 'string',
     },
     {
-      id: "Population Concerned",
-      label: "Population Concerned",
-      type: "number",
+      id: 'Population Concerned',
+      label: 'Population Concerned',
+      type: 'number',
     },
   ],
   rows: [],
@@ -84,12 +83,12 @@ class GoogleGeoConfig<T extends { iso_2: keyof typeof iso2 | null }> {
   }
 
   PopulateDataTable(att: keyof T, res: T) {
-    if (res["iso_2"]) {
+    if (res['iso_2']) {
       const obj: GRow = {
         c: [
           {
-            v: res["iso_2"],
-            f: iso2[res["iso_2"]],
+            v: res['iso_2'],
+            f: iso2[res['iso_2']],
           },
           {
             v: res[att] as number,
@@ -117,13 +116,13 @@ class GoogleGeoConfig<T extends { iso_2: keyof typeof iso2 | null }> {
   }
 }
 
-function set_doughnut(points: DIST[], conf: ChartConfiguration<"doughnut">) {
+function set_doughnut(points: TGeo[], conf: ChartConfiguration<'doughnut'>) {
   // Set the doughnut dataset
-  const array = points.map((o) => o.state);
+  const array = points.map((o) => o.number);
   const label = points.map((o) => o.name);
 
   conf.data.datasets[0].data = array;
   conf.data.labels = label;
 }
 
-export { DIST, GoogleGeoConfig, set_doughnut };
+export { GoogleGeoConfig, TGeo, set_doughnut };

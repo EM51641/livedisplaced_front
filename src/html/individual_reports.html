@@ -1,7 +1,11 @@
 {% extends "dist/base.html" %} {% block title %}
 <title>Reports</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="reports.css" />
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='individual_reports.css') }}"
+/>
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,11 +21,11 @@
 
 <!-- Requested Data-->
 <script>
-  const data = "{{coo_data | tojson| safe}}";
-  const datas = "{{coa_data | tojson| safe}}";
-  const datat = "{{data_tot_coo | tojson| safe}}";
-  const dataf = "{{data_tot_coa | tojson| safe}}";
-  const geo = "{{ data_geo|tojson|safe }}";
+  const top_inflow = '{{top_inflow | tojson| safe}}';
+  const top_outflow = '{{top_outflow | tojson| safe}}';
+  const total_inflow = '{{total_inflow | tojson| safe}}';
+  const total_outflow = '{{total_outflow | tojson| safe}}';
+  const outflow_per_cntry = '{{ outflow_per_cntry|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -57,7 +61,7 @@
             <div class="mt-3">
               <a
                 id="search-country"
-                href="{{url_for('parent_main.report.report', iso_2='UA')}}"
+                href="{{url_for('root.report.report', country_iso_2='UA')}}"
               >
                 <button
                   class="d-flex row col-12 justify-content-start align-items-center btn btn-primary mx-auto mb-2"
@@ -104,7 +108,7 @@
             class="row justify-content-between align-items-center px-5 py-5 m-auto"
           >
             <div class="col-lg-4 shadow-lg rounded m-auto text-center">
-              {% for item in coo_data[1:] %}
+              {% for item in top_inflow[1:] %}
               <div class="flag row my-4 mx-auto justify-content-between">
                 <div class="col-lg-4 col-md-4 col-6 mx-auto">
                   <img
@@ -186,7 +190,7 @@
               </div>
             </div>
             <div class="col-lg-4 my-5 mx-auto shadow-lg rounded text-center">
-              {% for item in coa_data[1:] %}
+              {% for item in top_outflow[1:] %}
               <div class="row my-4 mx-auto justify-content-between">
                 <div class="col-lg-4 col-md-4 col-6 mx-auto">
                   <img
@@ -276,5 +280,8 @@
   </div>
 </div>
 {% endblock %} {% block script %}
-<script src="individual_reports.bundle.js" type="text/javascript"></script>
+<script
+  src="{{ url_for('static', filename='individual_reports.bundle.js') }}"
+  type="text/javascript"
+></script>
 {% endblock %}

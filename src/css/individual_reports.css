@@ -5,12 +5,12 @@ html {
 }
 
 .large-container {
-  background-image: url("https://jooinn.com/images/blue-flower-91.jpg");
+  background-image: url('https://jooinn.com/images/blue-flower-91.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
   height: 700px;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   padding: 0%;
 }
 
