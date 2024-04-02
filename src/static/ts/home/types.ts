@@ -22,10 +22,10 @@ type top_10_coa = {
 
 // data type of the objects involved in pie chart 2
 type AL = {
-  name_: string;
-  iso_2_: keyof typeof iso2 | "ALL";
+  // name_: string;
+  // iso_2_: keyof typeof iso2 | "ALL";
   year: number;
-  metric: number;
+  number: number;
 };
 
 type GEO = {

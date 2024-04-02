@@ -28,7 +28,7 @@ async function updatechart(
   chart.data = points;
 
   chart.reset();
-  chart.SetTable("state");
+  chart.SetTable("number");
   chart.draw();
 }
 
@@ -48,7 +48,7 @@ google.charts.load("current", {
 google.charts.setOnLoadCallback(() => {
   {
     let chart = new GoogleGeoConfig<DIST>(points, geo_option, "geo-map-1");
-    chart.SetTable("state");
+    chart.SetTable("number");
     chart.draw();
 
     htmlelem_attr.addEventListener("change", function (event: Event) {

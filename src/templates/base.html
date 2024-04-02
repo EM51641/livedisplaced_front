@@ -97,21 +97,21 @@
               <li class="nav-item">
                 <a
                   class="nav-link {% if nbar == 'home' %}active{% endif %}"
-                  href="{{ url_for('root.home.home') }}"
+                  href="{{ url_for('root.web.overview_app.controller') }}"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link {% if nbar == 'dashboard' %}active{% endif %}"
-                  href="{{ url_for('root.flow.flow', country_of_destination_iso_2='UA', country_of_origin_iso_2='US') }}"
+                  href="{{ url_for('root.web.flux_between_cntries_app.controller', country_of_destination_iso_2='UA', country_of_origin_iso_2='US') }}"
                   >Dashboard</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link {% if nbar == 'report' %}active{% endif %}"
-                  href="{{ url_for('root.report.report', country_iso_2='UA') }}"
+                  href="{{ url_for('root.web.countries_report_app.controller', country_iso_2='UA') }}"
                   >Reports</a
                 >
               </li>
@@ -119,12 +119,18 @@
             <ul class="navbar-nav ms-auto">
               {% if current_user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for('root.user.logout')}}">
+                <a
+                  class="nav-link"
+                  href="{{url_for('root.web.user.account_logout_app.controller')}}"
+                >
                   Logout
                 </a>
               </li>
               <li>
-                <a class="nav-link" href="{{url_for('root.user.settings')}}">
+                <a
+                  class="nav-link"
+                  href="{{url_for('root.web.user.account_settings_app.controller')}}"
+                >
                   Settings
                 </a>
               </li>
@@ -135,12 +141,18 @@
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for('root.user.login')}}">
+                <a
+                  class="nav-link"
+                  href="{{url_for('root.web.user.account_login_app.controller')}}"
+                >
                   Login
                 </a>
               </li>
               <li>
-                <a class="nav-link" href="{{url_for('root.user.register')}}">
+                <a
+                  class="nav-link"
+                  href="{{url_for('root.web.user.account_registration_app.controller')}}"
+                >
                   Register
                 </a>
               </li>
@@ -164,7 +176,7 @@
           By clicking “Accept all cookies”, you agree livedisplaced can store
           cookies on your device and disclose information in accordance with our
           <a
-            href="{{url_for('root.terms.privacy_policy_controller')}}#Cookies-policy"
+            href="{{url_for('root.web.terms_app.privacy_policy_controller')}}#Cookies-policy"
             >Cookie Policy</a
           >.
         </div>
@@ -204,7 +216,7 @@
           By clicking “Accept all cookies”, you agree livedisplaced can store
           cookies on your device and disclose information in accordance with our
           <a
-            href="{{url_for('root.terms.privacy_policy_controller')}}#Cookies-policy"
+            href="{{url_for('root.web.terms_app.privacy_policy_controller')}}#Cookies-policy"
             >Cookie Policy</a
           >.
         </div>
@@ -237,7 +249,7 @@
             <div class="mb-3">
               <a
                 class="footer-links"
-                href="{{url_for('root.terms.privacy_policy_controller')}}"
+                href="{{url_for('root.web.terms_app.privacy_policy_controller')}}"
                 >Privacy Policy</a
               >
             </div>
@@ -249,7 +261,7 @@
             <div>
               <a
                 class="footer-links"
-                href="{{url_for('root.terms.terms_of_use_controller')}}"
+                href="{{url_for('root.web.terms_app.terms_of_use_controller')}}"
                 >Terms of Use</a
               >
             </div>
@@ -258,7 +270,7 @@
             <div>
               <a
                 class="footer-links"
-                href="{{url_for('root.terms.privacy_policy_controller')}}"
+                href="{{url_for('root.web.terms_app.privacy_policy_controller')}}"
                 >About us</a
               >
             </div>

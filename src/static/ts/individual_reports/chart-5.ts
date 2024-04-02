@@ -7,6 +7,7 @@ import { getjson } from "../helpers/refresh";
 import { AppendOption, GetDomID } from "../helpers/utils";
 import { geo_option } from "../main";
 
+
 AppendOption("select-attribute-2", coo_choices);
 AppendOption("select-year-2", years_choices);
 AppendOption("select-coo-coa", geo_choices_report);

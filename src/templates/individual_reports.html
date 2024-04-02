@@ -1,7 +1,7 @@
-{% extends "dist/base.html" %} {% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Reports</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="reports.css" />
+<link rel="stylesheet" type="text/css" href="dist/reports.css" />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,11 +17,11 @@
 
 <!-- Requested Data-->
 <script>
-  const data = "{{coo_data | tojson| safe}}";
-  const datas = "{{coa_data | tojson| safe}}";
-  const datat = "{{data_tot_coo | tojson| safe}}";
-  const dataf = "{{data_tot_coa | tojson| safe}}";
-  const geo = "{{ data_geo|tojson|safe }}";
+  const data = '{{coo_data | tojson| safe}}';
+  const datas = '{{coa_data | tojson| safe}}';
+  const datat = '{{data_tot_coo | tojson| safe}}';
+  const dataf = '{{data_tot_coa | tojson| safe}}';
+  const geo = '{{ data_geo|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">

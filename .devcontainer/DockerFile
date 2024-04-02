@@ -1,7 +1,0 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node
-
-COPY package.json .
-
-RUN npm install
-
-CMD ["npm", "start"]

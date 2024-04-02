@@ -1,7 +1,7 @@
-{% extends "dist/base.html" %} {% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Dashboard</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dashboard/style.css" />
+<link rel="stylesheet" type="text/css" href="dist/dashboard.css" />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,7 +17,7 @@
 
 <!-- Requested Data-->
 <script>
-  const jdata = "{{ data|tojson|safe }}";
+  const jdata = '{{ data|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">

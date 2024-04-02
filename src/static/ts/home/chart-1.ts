@@ -18,7 +18,10 @@ AppendOption("select-attribute", coo_choices);
 AppendOption("select-year", years_choices);
 
 declare const coo: string;
+
 let points: DIST[] = JSON.parse(coo);
+
+console.log(points);
 
 let conf: ChartConfiguration<"doughnut"> = _.cloneDeep(dconf);
 
@@ -41,6 +44,8 @@ conf.data.datasets[0].backgroundColor = [
 const canvas = GetCtx("pieplot-1");
 const chart = new Chart(canvas, conf);
 
+console.log(chart.data);
+
 const htmlelem_year = GetDomID("select-year");
 
 htmlelem_year.addEventListener("change", async (e: Event) => {
@@ -52,7 +57,7 @@ htmlelem_year.addEventListener("change", async (e: Event) => {
   points = (await getjson<DIST>(url)) as DIST[];
   set_doughnut(points, conf);
 
-  fill_text<DIST>("number-first", points, "state", "");
+  fill_text<DIST>("number-first", points, "number", "");
   fill_text<DIST>("name-first", points, "name", "");
   fill_image<DIST>("img-first", points, "iso_2", "name");
 
@@ -70,7 +75,7 @@ htmlelem_attr.addEventListener("change", async (e: Event) => {
   points = (await getjson<DIST>(url)) as DIST[];
   set_doughnut(points, conf);
 
-  fill_text<DIST>("number-first", points, "state", "");
+  fill_text<DIST>("number-first", points, "number", "");
   fill_text<DIST>("name-first", points, "name", "");
   fill_image<DIST>("img-first", points, "iso_2", "name");
 

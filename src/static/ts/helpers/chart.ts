@@ -4,10 +4,9 @@ import iso2 from "../data/cntries_lst";
 
 // data type of the objects involved in pie charts
 type DIST = {
-  state: number;
+  number: number;
   name: (typeof iso2)[keyof typeof iso2] | "Others";
   iso_2: keyof typeof iso2 | null;
-  year: number;
 };
 
 // Google Chart Type
@@ -119,11 +118,13 @@ class GoogleGeoConfig<T extends { iso_2: keyof typeof iso2 | null }> {
 
 function set_doughnut(points: DIST[], conf: ChartConfiguration<"doughnut">) {
   // Set the doughnut dataset
-  const array = points.map((o) => o.state);
+  const array = points.map((o) => o.number);
   const label = points.map((o) => o.name);
 
   conf.data.datasets[0].data = array;
   conf.data.labels = label;
+
+  console.log("Doughnut set");
 }
 
 export { DIST, GoogleGeoConfig, set_doughnut };

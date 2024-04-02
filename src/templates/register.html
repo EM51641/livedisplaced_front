@@ -1,4 +1,4 @@
-{% extends "dist/base.html" %} {% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Register</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" type="text/css" href="dist/register.css" />
@@ -75,7 +75,7 @@
             value="true", id="CheckChoice") }}
             <label for="CheckChoice" class="form-check-label text-white"
               >Agree to the
-              <a href="{{url_for('root.terms.terms_of_use_controller')}}"
+              <a href="{{url_for('root.web.terms_app.terms_of_use_controller')}}"
                 >terms of use</a
               ></label
             >
@@ -84,7 +84,7 @@
             {{ form.submit(class="form-control btn btn-primary") }}
           </div>
           <div class="login">
-            <a style="color: white" href="{{ url_for('root.user.login') }}"
+            <a style="color: white" href="{{ url_for('root.web.user.account_login_app.controller') }}"
               >Already have an account? Log In</a
             >
           </div>

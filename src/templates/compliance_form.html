@@ -1,7 +1,7 @@
-{% extends "dist/base.html" %} {% block title %}
+{% extends "base.html" %} {% block title %}
 <title>We updated ou terms of use</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="sign_compliance.css" />
+<link rel="stylesheet" type="text/css" href="dist/compliance_form.css" />
 {% endblock %} {% block content %}
 <div class="container-fluid p-0">
   <div
@@ -32,7 +32,7 @@
             value="true", id="CheckChoice") }}
             <label for="CheckChoice" class="form-check-label"
               >Agree to the new
-              <a href="{{url_for('root.terms.terms_of_use_controller')}}"
+              <a href="{{url_for('root.web.terms_app.terms_of_use_controller')}}"
                 >terms of use</a
               ></label
             >

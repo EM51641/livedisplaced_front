@@ -1,4 +1,4 @@
-{% extends "dist/base.html" %} {% block title %}
+{% extends "base.html" %} {% block title %}
 <title>Login</title>
 {% endblock %} {% block style %}
 <link rel="stylesheet" type="text/css" href="dist/login.css" />
@@ -61,12 +61,14 @@
       </form>
       <div class="row mb-4">
         <div class="d-flex justify-content-start col-6 redirect">
-          <a href="{{ url_for('root.user.register') }}">
+          <a
+            href="{{ url_for('root.web.user.account_registration_app.controller') }}"
+          >
             Don't have an account yet? Sign Up
           </a>
         </div>
         <div class="d-flex justify-content-end col-6 redirect">
-          <a href="{{ url_for('root.request_reset_password.request') }}">
+          <a href="{{ url_for('root.web.forget_password_app.controller') }}">
             Forgot Password?
           </a>
         </div>
@@ -75,7 +77,10 @@
         <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
       </div>
       <div class="social-auth">
-        <a class="google-row" href="{{ url_for('root.oauth.google_login') }}">
+        <a
+          class="google-row"
+          href="{{ url_for('root.web.user.account_oauth_login_app.google_auth_redirect_controller') }}"
+        >
           <button
             class="d-flex row col-12 justify-content-start align-items-center btn btn-google btn-login ms-auto me-auto mb-2"
             role="button"
@@ -86,7 +91,7 @@
         </a>
         <a
           class="facebook-row"
-          href="{{ url_for('root.oauth.facebook_login') }}"
+          href="{{ url_for('root.web.user.account_oauth_login_app.facebook_auth_redirect_controller') }}"
         >
           <button
             class="d-flex row col-12 justify-content-start align-items-center btn btn-facebook btn-login ms-auto me-auto mb-2"

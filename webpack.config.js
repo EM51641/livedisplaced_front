@@ -1,61 +1,56 @@
 const path = require("path");
+const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
-HTML = [
-  "base.html" , "activate_account_email.html",
-  "compliance_form.html", "individual_reports.html", 
-  "privacy_policy.html", "settings.html",
-  "terms_of_use.html", "dashboard.html",
-  "home.html", "login.html", "password_lost_request.html",
-  "register.html", "reset_lost_password_email.html"
-]
+TEMPLATES_LIST = fs.readdirSync('./src/templates', {withFileTypes: true})
+              .filter(item => !item.isDirectory())
+              .map(item => item.name);
 
 module.exports = {
   mode: "development",
   entry: {
     login:[
-      path.join( __dirname, "src/css/login.css"),
+      path.resolve(__dirname, "src/static/css/login.css"),
     ],
     register:[
-      path.join( __dirname, "src/css/register.css"),
+      path.resolve(__dirname, "src/static/css/register.css"),
     ],
     password_lost_request:[
-      path.join( __dirname, "src/css/password_lost_request.css"),
+      path.resolve(__dirname, "src/static/css/password_lost_request.css"),
     ],
     settings:[
-      path.join( __dirname, "src/css/settings.css"),
+      path.resolve(__dirname, "src/static/css/settings.css"),
     ],
     terms:
     [
-      path.join( __dirname, "src/css/compliance_form.css"),
+      path.resolve(__dirname, "src/static/css/compliance_form.css"),
     ],
     home: [
-      path.join( __dirname, "src/ts/home/chart-1.ts"),
-      path.join( __dirname, "src/ts/home/chart-2.ts"),
-      path.join( __dirname, "src/ts/home/chart-3.ts"),
-      path.join( __dirname, "src/ts/home/chart-4.ts"),
-      path.join( __dirname, "src/css/home.css"),
+      path.resolve(__dirname, "src/static/ts/home/chart-1.ts"),
+      path.resolve(__dirname, "src/static/ts/home/chart-2.ts"),
+      path.resolve(__dirname, "src/static/ts/home/chart-3.ts"),
+      path.resolve(__dirname, "src/static/ts/home/chart-4.ts"),
+      path.resolve(__dirname, "src/static/css/home.css"),
     ],
     dashboard:[
-      path.join( __dirname, "src/ts/dashboard/dashboard.ts"),
-      path.join(__dirname, "src/css/dashboard.css"),
+      path.resolve(__dirname, "src/static/ts/dashboard/dashboard.ts"),
+      path.resolve(__dirname, "src/static/css/dashboard.css"),
       
     ],
     individual_reports: [
-      path.join( __dirname, "src/ts/individual_reports/principal-bar.ts"),
-      path.join( __dirname, "src/ts/individual_reports/chart-1.ts"),
-      path.join( __dirname, "src/ts/individual_reports/chart-2.ts"),
-      path.join( __dirname, "src/ts/individual_reports/chart-3.ts"),
-      path.join( __dirname, "src/ts/individual_reports/chart-4.ts"),
-      path.join( __dirname, "src/ts/individual_reports/chart-5.ts"),
-      path.join(__dirname, "src/static/individual_reports.css"),
+      path.join( __dirname, "src/static/ts/individual_reports/principal-bar.ts"),
+      path.join( __dirname, "src/static/ts/individual_reports/chart-1.ts"),
+      path.join( __dirname, "src/static/ts/individual_reports/chart-2.ts"),
+      path.join( __dirname, "src/static/ts/individual_reports/chart-3.ts"),
+      path.join( __dirname, "src/static/ts/individual_reports/chart-4.ts"),
+      path.join( __dirname, "src/static/ts/individual_reports/chart-5.ts"),
+      path.join(__dirname, "src/static/css/individual_reports.css"),
     ],
     base: [
-      path.join( __dirname, "src/ts/base/base.ts"),
-      path.join(__dirname, "src/css/base.css")
+      path.resolve(__dirname, "src/static/ts/base/base.ts"),
+      path.resolve(__dirname, "src/static/css/base.css")
     ],
   },
   watch: true,
@@ -85,16 +80,17 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   devServer: {
-    contentBase: path.join(__dirname, "/dist/"),
-    inline: true,
-    host: "localhost",
-    port: 8080,
+    static: {
+      directory: path.resolve(__dirname, 'dist'),
+    },
+    compress: false,
+    port: 9230,
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    ...HTML.map((filename) => {
+    ...TEMPLATES_LIST.map((filename) => {
       return new HtmlWebpackPlugin({
-        template: `./src/html/${filename}`,
+        template: path.resolve(__dirname, `src/templates/${filename}`),
         filename: filename,
         chunks: [],
       });
@@ -102,7 +98,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "dist",
+    publicPath: "./dist",
     filename: "[name].bundle.js",
     chunkFilename: "[name].js",
   },

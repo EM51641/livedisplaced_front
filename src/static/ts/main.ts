@@ -1,5 +1,6 @@
 import { ChartConfiguration } from "chart.js/auto";
 
+
 // Configure the scales
 const scales = {
   x: {
@@ -108,8 +109,7 @@ const dconf: ChartConfiguration<"doughnut"> = {
   plugins: [],
 };
 
-const geo_option: google.visualization.GeoChartOptions = {
-  //title:'Hosted People of Concerns per country',
+const geo_option: google.visualization.GeoChartOptions = { 
   backgroundColor: "transparent",
   colorAxis: {
     colors: ["#2E7F18", "#45731E", "#675E24", "#8D472B", "#B13433", "#C82538"],

@@ -14,7 +14,7 @@ let points: AL[] = JSON.parse(total);
 
 let conf = _.clone(lconf);
 
-conf.data.datasets[0].data = points.map((o) => o.metric);
+conf.data.datasets[0].data = points.map((o) => o.number);
 conf.data.labels = points.map((o) => o.year);
 
 const canvas = GetCtx("line-1");
@@ -29,7 +29,7 @@ async function updatechart(event: Event) {
 
   points = (await getjson<AL>(url)) as AL[];
 
-  conf.data.datasets[0].data = points.map((o) => o.metric);
+  conf.data.datasets[0].data = points.map((o) => o.number);
   conf.data.labels = points.map((o) => o.year);
   chart.update();
 }

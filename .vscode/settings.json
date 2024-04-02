@@ -1,19 +1,25 @@
 {
-    "editor.defaultFormatter": null,
+    "vscode-neovim.neovimClean": true,
+    "[yaml]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[sql]": {
+      "editor.defaultFormatter": "mtxr.sqltools"
+    },
     "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": true
     },
     "[html]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true,
+      // "editor.formatOnSave": true
     },
     "[css]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnSave": true,
-    },
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.fixAll": true
-  },
+      "editor.formatOnSave": true
+    }
   }
+  

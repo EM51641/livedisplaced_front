@@ -1,5 +1,5 @@
-import { Chart } from "chart.js/auto";
 import _ from "lodash";
+import { Chart } from "chart.js/auto";
 import { coo_choices } from "../data/coa_coo_filter";
 import { AppendOption, GetCtx, GetDomID } from "../helpers/utils";
 import { lconf } from "../main";
