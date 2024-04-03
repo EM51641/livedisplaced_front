@@ -1,7 +1,7 @@
-function GetDomID(id: string): HTMLElement {
+function GetDomID(id: string): HTMLInputElement {
   // Get DOM ID element
   let elem = document.getElementById(id);
-  if (elem instanceof HTMLElement) {
+  if (elem instanceof HTMLInputElement) {
     return elem;
   } else {
     throw new Error(`The html element with id=${id} doesn't exist`);
