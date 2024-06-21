@@ -7,7 +7,6 @@ import { getjson } from "../helpers/refresh";
 import { AppendOption, GetDomID } from "../helpers/utils";
 import { geo_option } from "../main";
 
-
 AppendOption("select-attribute-2", coo_choices);
 AppendOption("select-year-2", years_choices);
 AppendOption("select-coo-coa", geo_choices_report);
@@ -30,7 +29,7 @@ async function updatechart(
   console.log(points);
 
   chart.reset();
-  chart.SetTable("state");
+  chart.SetTable("number");
   chart.draw();
 }
 
@@ -50,7 +49,7 @@ google.charts.load("current", {
 google.charts.setOnLoadCallback(() => {
   {
     let chart = new GoogleGeoConfig<DIST>(points, geo_option, "geo-map-1");
-    chart.SetTable("state");
+    chart.SetTable("number");
     chart.draw();
 
     htmlelem_attr.addEventListener("change", function (event: Event) {

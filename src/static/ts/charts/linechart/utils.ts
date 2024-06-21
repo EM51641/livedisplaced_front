@@ -94,10 +94,18 @@ class LineChartManager {
    * @returns The generated URL.
    */
   private generateUrl(category: string | undefined): string {
+    let url = `${window.location.href}/api/v1/relations?`;
+
     if (category) {
-      return `${window.location.href}/api/iso_2=${this.countryIso2}&coo=${this.isCountryOfOrigin}&category=${category}`;
+      url = `${url}category=${category},`;
     }
-    return `${window.location.href}/api/iso_2=${this.countryIso2}&coo=${this.isCountryOfOrigin}`;
+
+    if (this.countryIso2) {
+      url = `${url}country=${this.countryIso2},`;
+    }
+
+    url = `${url}origin=${this.isCountryOfOrigin}`;
+    return url;
   }
   /**
    * Updates the chart.

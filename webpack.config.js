@@ -20,6 +20,9 @@ module.exports = {
     password_lost_request:[
       path.resolve(__dirname, "src/static/css/password_lost_request.css"),
     ],
+    update_password:[
+      path.resolve(__dirname, "src/static/css/update_password.css"),
+    ],
     settings:[
       path.resolve(__dirname, "src/static/css/settings.css"),
     ],
@@ -28,25 +31,23 @@ module.exports = {
       path.resolve(__dirname, "src/static/css/compliance_form.css"),
     ],
     home: [
-      path.resolve(__dirname, "src/static/ts/home/chart-1.ts"),
-      path.resolve(__dirname, "src/static/ts/home/chart-2.ts"),
-      path.resolve(__dirname, "src/static/ts/home/chart-3.ts"),
-      path.resolve(__dirname, "src/static/ts/home/chart-4.ts"),
+      path.resolve(__dirname, "ssrc/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/geo-maps/global_report_geo_chart.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/linechart/aggregated_global_displaced_data_charts.ts"),
       path.resolve(__dirname, "src/static/css/home.css"),
     ],
     dashboard:[
-      path.resolve(__dirname, "src/static/ts/dashboard/dashboard.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/bilateral/timeserie.ts"),
       path.resolve(__dirname, "src/static/css/dashboard.css"),
       
     ],
     individual_reports: [
-      path.join( __dirname, "src/static/ts/individual_reports/principal-bar.ts"),
-      path.join( __dirname, "src/static/ts/individual_reports/chart-1.ts"),
-      path.join( __dirname, "src/static/ts/individual_reports/chart-2.ts"),
-      path.join( __dirname, "src/static/ts/individual_reports/chart-3.ts"),
-      path.join( __dirname, "src/static/ts/individual_reports/chart-4.ts"),
-      path.join( __dirname, "src/static/ts/individual_reports/chart-5.ts"),
-      path.join(__dirname, "src/static/css/individual_reports.css"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/geo-maps/country_report_geo_chart.ts"),
+      path.resolve( __dirname, "src/static/ts/charts/linechart/aggregated_country_displaced_data_origin_chart.ts"),
+      path.resolve(__dirname, "src/static/css/individual_reports.css"),
     ],
     base: [
       path.resolve(__dirname, "src/static/ts/base/base.ts"),

@@ -25,11 +25,11 @@ body {
   overflow-y: hidden;
 }
 
-.flashes-error {
+.flash-error {
   color: red;
 }
 
-.flashes-success {
+.flash-success {
   color: green;
 }
 

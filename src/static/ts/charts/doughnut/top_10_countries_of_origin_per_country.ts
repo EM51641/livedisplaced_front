@@ -4,7 +4,8 @@ import { coo_choices } from "../../data/coa_coo_filter";
 import { years_choices } from "../../data/tot_arrival_filter";
 import { DoughnutDataPoint } from "./type";
 import DoughnutChart from "./utils";
-import { getQueryParam } from "../utils";
+import { getLastPathSegment } from "../utils";
+import iso2 from "../../data/cntries_lst";
 
 AppendOption("select-attribute", coo_choices);
 AppendOption("select-year", years_choices);
@@ -27,7 +28,7 @@ const BACKGROUND_COLOR = [
 let ChartManager = new DoughnutChart({
   points: Top10CountryOfOriginPerCountryData,
   isCountryOfOrigin: true,
-  countryIso2: getQueryParam("countryIso2"),
+  countryIso2: getLastPathSegment() as keyof typeof iso2,
 });
 ChartManager.setConfig(BACKGROUND_COLOR);
 ChartManager.Draw("pieplot-1");

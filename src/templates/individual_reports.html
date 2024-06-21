@@ -17,11 +17,11 @@
 
 <!-- Requested Data-->
 <script>
-  const data = '{{coo_data | tojson| safe}}';
-  const datas = '{{coa_data | tojson| safe}}';
-  const datat = '{{data_tot_coo | tojson| safe}}';
-  const dataf = '{{data_tot_coa | tojson| safe}}';
-  const geo = '{{ data_geo|tojson|safe }}';
+  const data = "{{top_inflow | tojson| safe}}";
+  const datas = "{{top_outflow | tojson| safe}}";
+  const total_inflow = "{{total_inflow | tojson| safe}}";
+  const total_outflow = "{{total_outflow | tojson| safe}}";
+  const geo = "{{ outflow_per_cntry|tojson|safe }}";
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -57,7 +57,7 @@
             <div class="mt-3">
               <a
                 id="search-country"
-                href="{{url_for('parent_main.report.report', iso_2='UA')}}"
+                href="{{url_for('root.web.countries_report_app.controller', iso_2='UA')}}"
               >
                 <button
                   class="d-flex row col-12 justify-content-start align-items-center btn btn-primary mx-auto mb-2"
@@ -104,7 +104,7 @@
             class="row justify-content-between align-items-center px-5 py-5 m-auto"
           >
             <div class="col-lg-4 shadow-lg rounded m-auto text-center">
-              {% for item in coo_data[1:] %}
+              {% for item in top_outflow[:-1] %}
               <div class="flag row my-4 mx-auto justify-content-between">
                 <div class="col-lg-4 col-md-4 col-6 mx-auto">
                   <img
@@ -143,12 +143,12 @@
           <div class="d-flex justify-content-center my-auto mx-auto">
             <div class="col-4">
               <select
-                id="select-option"
+                id="select-category"
                 class="form-select"
                 aria-label="Default select example"
                 style="background-color: rgb(65, 105, 225, 0.8)"
               >
-                <option selected value="total">Total</option>
+                <option selected value="REFUGEES">refugees</option>
               </select>
             </div>
           </div>
@@ -186,7 +186,7 @@
               </div>
             </div>
             <div class="col-lg-4 my-5 mx-auto shadow-lg rounded text-center">
-              {% for item in coa_data[1:] %}
+              {% for item in top_inflow[:-1] %}
               <div class="row my-4 mx-auto justify-content-between">
                 <div class="col-lg-4 col-md-4 col-6 mx-auto">
                   <img
@@ -220,12 +220,12 @@
           <div class="d-flex justify-content-center my-auto mx-auto">
             <div class="col-4">
               <select
-                id="select-option-1"
+                id="select-category-1"
                 class="form-select"
                 aria-label="Default select example"
                 style="background-color: rgb(65, 105, 225, 0.8)"
               >
-                <option selected value="total">Total</option>
+                <option selected value="refugees">REFUGEES</option>
               </select>
             </div>
           </div>

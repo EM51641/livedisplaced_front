@@ -1,4 +1,6 @@
-function GetDomID(id: string): HTMLInputElement {
+function GetDomID(
+  id: string
+): HTMLInputElement | HTMLAnchorElement | HTMLImageElement {
   // Get DOM ID element
   let elem = document.getElementById(id);
   if (elem instanceof HTMLInputElement) {

@@ -145,7 +145,7 @@ class DoughnutChart {
    * @returns The generated URL for the API endpoint.
    */
   private generateUrl(year: string, category: string): string {
-    return `${window.location.href}/api/iso_2=${this.countryIso2}&coo=${this.isCountryOfOrigin}&year=${year}&category=${category}`;
+    return `${window.location.href}/api/v1/&iso_2=${this.countryIso2}&coo=${this.isCountryOfOrigin}&year=${year}&category=${category}`;
   }
 
   /**

@@ -17,7 +17,9 @@
 
 <!-- Requested Data-->
 <script>
-  const jdata = '{{ data|tojson|safe }}';
+  const refugees_ts = "{{ refugees_ts|tojson|safe }}";
+  const asylium_seekers_ts = "{{ asylium_seekers_ts|tojson|safe }}";
+  const people_of_concern_ts = "{{ people_of_concern_ts|tojson|safe }}";
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -32,9 +34,9 @@
               <div class="flag mb-2">
                 <img
                   id="img-flag-from"
-                  src="https://flagcdn.com/h240/{{from_.iso_2 | lower}}.png"
+                  src="https://flagcdn.com/h240/{{country_of_origin.iso_2 | lower}}.png"
                   crossorigin="anonymous"
-                  alt="{{from_.name}}"
+                  alt="{{country_of_origin.name}}"
                   class="rounded img-flag"
                 />
               </div>
@@ -44,8 +46,8 @@
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected value="{{from_.iso_2}}">
-                    {{from_.name}}
+                  <option selected value="{{country_of_origin.iso_2}}">
+                    {{country_of_origin.name}}
                   </option>
                 </select>
               </div>
@@ -60,9 +62,9 @@
               <div class="flag mb-2">
                 <img
                   id="img-flag-to"
-                  src="https://flagcdn.com/h240/{{to_.iso_2 | lower}}.png"
+                  src="https://flagcdn.com/h240/{{country_of_arrival.iso_2 | lower}}.png"
                   crossorigin="anonymous"
-                  alt="{{to_.name}}"
+                  alt="{{country_of_arrival.name}}"
                   class="rounded img-flag"
                 />
               </div>
@@ -72,7 +74,7 @@
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected value="{{to_.iso_2}}">{{to_.name}}</option>
+                  <option selected value="{{country_of_arrival.iso_2}}">{{country_of_arrival.name}}</option>
                 </select>
               </div>
             </div>
@@ -80,7 +82,7 @@
           <a
             id="go-to"
             class="download-row"
-            href="http://localhost:7070/dashboard/US/US"
+            href="{{ url_for('root.web.flux_between_cntries_app.controller')}}"
           >
             <button
               class="d-flex row col-4 justify-content-start align-items-center btn btn-primary ms-auto me-auto mb-2"
@@ -103,19 +105,6 @@
           </div>
           <div class="chart-container" style="position: relative; height: 50vw">
             <canvas id="line-1" style="height: 100%; width: 100%"></canvas>
-          </div>
-          <div
-            class="d-flex col-6 justify-content-center align-items-center mx-auto"
-          >
-            <a
-              class="d-flex col-md-4 col-xl-4 col-sm-6 col-xs-6 download-row my-auto justify-content-center"
-              href="http://localhost:7070/dashboard/download/{{from_.iso_2}}/{{to_.iso_2}}"
-            >
-              <button class="row col-12 btn btn-warning" role="button">
-                <i class="fa-solid fa-download fa-lg col-2"></i>
-                <span class="col-10"> Download </span>
-              </button>
-            </a>
           </div>
         </div>
       </div>

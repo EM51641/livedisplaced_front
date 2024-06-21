@@ -17,7 +17,7 @@
       <div class="mb-3 text-center">
         <div class="h1 font-weight-normal" style="color: white">Sign In</div>
       </div>
-      {% with messages = get_flashed_messages(category_filter=["flashes-error"])
+      {% with messages = get_flashed_messages(category_filter=["flash-errors"])
       %} {% if messages %}
       <div class="col-12">
         <ul
@@ -25,19 +25,19 @@
           style="list-style: none"
         >
           {% for message in messages %}
-          <li class="flashes-error">{{ message }}</li>
+          <li class="flash-error">{{ message }}</li>
           {% endfor %}
         </ul>
       </div>
       {% endif %} {% endwith %} {% with messages =
-      get_flashed_messages(category_filter=["flashes-success"]) %} {% if
-      messages %}
+      get_flashed_messages(category_filter=["flash-success"]) %} {% if messages
+      %}
       <ul
         class="row justify-content-center mb-3 flashes"
         style="list-style: none"
       >
         {% for message in messages %}
-        <li class="flashes-success">{{ message }}</li>
+        <li class="flash-success">{{ message }}</li>
         {% endfor %}
       </ul>
       {% endif %} {% endwith %}
@@ -79,7 +79,7 @@
       <div class="social-auth">
         <a
           class="google-row"
-          href="{{ url_for('root.web.user.account_oauth_login_app.google_auth_redirect_controller') }}"
+          href="{{ url_for('root.web.user.oauth_app.google_auth_redirect_controller') }}"
         >
           <button
             class="d-flex row col-12 justify-content-start align-items-center btn btn-google btn-login ms-auto me-auto mb-2"
@@ -91,7 +91,7 @@
         </a>
         <a
           class="facebook-row"
-          href="{{ url_for('root.web.user.account_oauth_login_app.facebook_auth_redirect_controller') }}"
+          href="{{ url_for('root.web.user.oauth_app.facebook_auth_redirect_controller') }}"
         >
           <button
             class="d-flex row col-12 justify-content-start align-items-center btn btn-facebook btn-login ms-auto me-auto mb-2"

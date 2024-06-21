@@ -1,5 +1,3 @@
-import iso2 from "../data/cntries_lst";
-
 /**
  * Retrieves DOM elements with the specified class name.
  *
@@ -162,6 +160,28 @@ function getQueryParam(param: string): string {
   return paramValue;
 }
 
+/**
+ * Retrieves the last segment of the path from the current window location.
+ * @returns The last segment of the path.
+ */
+function getLastPathSegment(): string {
+  const pathSegments = window.location.pathname.split("/").filter(Boolean);
+  if (pathSegments.length === 0) {
+    throw Error("No path segment found");
+  }
+  return pathSegments.pop() as string;
+}
+/**
+ * Fetches data from the specified request and returns the JSON response.
+ * @param request - The request to fetch the data from.
+ * @returns A promise that resolves to the JSON response.
+ * @template T - The type of the JSON response.
+ */
+const fetchData = async <T>(url: string): Promise<T[]> => {
+  const response = await fetch(url);
+  return await response.json();
+};
+
 export {
   GetDomClass,
   GetDomInputId,
@@ -171,4 +191,6 @@ export {
   FetchJsonFromUrl,
   AppendDataToId,
   getQueryParam,
+  getLastPathSegment,
+  fetchData,
 };

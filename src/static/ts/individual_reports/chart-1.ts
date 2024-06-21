@@ -52,7 +52,7 @@ htmlelem_year.addEventListener("change", async (e: Event) => {
   const points = (await getjson<DIST>(url)) as DIST[];
   set_doughnut(points, conf);
 
-  fill_text<DIST>("number-first", points, "state", "");
+  fill_text<DIST>("number-first", points, "number", "");
   fill_text<DIST>("name-first", points, "name", "");
   fill_image<DIST>("img-first", points, "iso_2", "name");
 
@@ -71,7 +71,7 @@ htmlelem_attr.addEventListener("change", async (e: Event) => {
   console.log(points);
   set_doughnut(points, conf);
 
-  fill_text<DIST>("number-first", points, "state", "");
+  fill_text<DIST>("number-first", points, "number", "");
   fill_text<DIST>("name-first", points, "name", "");
   fill_image<DIST>("img-first", points, "iso_2", "name");
 

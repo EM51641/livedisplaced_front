@@ -5,8 +5,8 @@ import { lconf } from "../main";
 import TLD from "./types";
 
 // Flexible Time Serie Evolution
-declare const jdata: string;
-const data: TLD[] = JSON.parse(jdata);
+declare const refugees_ts: string;
+const data: TLD[] = JSON.parse(refugees_ts);
 
 let conf = { ...lconf };
 conf.data.labels = data.map((o) => o.year);
