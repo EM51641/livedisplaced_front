@@ -3,7 +3,11 @@ function GetDomID(
 ): HTMLInputElement | HTMLAnchorElement | HTMLImageElement {
   // Get DOM ID element
   let elem = document.getElementById(id);
-  if (elem instanceof HTMLInputElement) {
+  if (
+    elem instanceof HTMLInputElement ||
+    elem instanceof HTMLAnchorElement ||
+    elem instanceof HTMLImageElement
+  ) {
     return elem;
   } else {
     throw new Error(`The html element with id=${id} doesn't exist`);

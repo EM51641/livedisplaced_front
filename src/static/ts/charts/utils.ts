@@ -1,3 +1,10 @@
+const allowedDomains = ["https://livedisplaced.com", "https://localhost:7070"];
+
+function isUrlAllowed(url: string): boolean {
+  const urlObj = new URL(url);
+  return allowedDomains.includes(urlObj.origin);
+}
+
 /**
  * Retrieves DOM elements with the specified class name.
  *
@@ -117,7 +124,11 @@ function FillFlags<T>(
  * @returns A promise that resolves to the fetched JSON data.
  */
 async function FetchJsonFromUrl<T>(url: string) {
-  console.log(`Fetching POST to ${url}`);
+  console.log(`Fetching GET to ${url}`);
+  if (!isUrlAllowed(url)) {
+    throw new Error("URL is not allowed");
+  }
+
   const response = await fetch(url);
   const points = (await response.json()) as T[];
   return points;

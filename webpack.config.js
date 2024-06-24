@@ -31,7 +31,7 @@ module.exports = {
       path.resolve(__dirname, "src/static/css/compliance_form.css"),
     ],
     home: [
-      path.resolve(__dirname, "ssrc/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
       path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts"),
       path.resolve(__dirname, "src/static/ts/charts/geo-maps/global_report_geo_chart.ts"),
       path.resolve(__dirname, "src/static/ts/charts/linechart/aggregated_global_displaced_data_charts.ts"),
