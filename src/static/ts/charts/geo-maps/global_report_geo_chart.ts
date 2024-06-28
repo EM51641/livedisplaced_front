@@ -39,8 +39,8 @@ const htmlelem_attr = GetDomID("select-attribute-2");
 const htmlelem_year = GetDomID("select-year-2");
 const htmlelem_coo = GetDomID("select-coo-coa");
 
-declare const geo: string;
-let points: DIST[] = JSON.parse(geo);
+declare const GeoTrafficJson: string;
+let points: DIST[] = JSON.parse(GeoTrafficJson);
 
 // load googles' package
 google.charts.load("current", {

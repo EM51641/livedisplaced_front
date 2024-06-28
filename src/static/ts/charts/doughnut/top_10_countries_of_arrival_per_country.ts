@@ -6,11 +6,16 @@ import { DoughnutDataPoint } from "./type";
 import DoughnutChart from "./utils";
 import { getQueryParam } from "../utils";
 import iso2 from "../../data/cntries_lst";
+import { json } from "stream/consumers";
 
 AppendOption("select-attribute", coo_choices);
 AppendOption("select-year", years_choices);
 
-declare let Top10CountryOfArrivalPerCountryData: DoughnutDataPoint[];
+declare const Top10CountryOfArrivalJson: string;
+let top_10_country_of_arrival_data_pts: DoughnutDataPoint[] = JSON.parse(
+  Top10CountryOfArrivalJson
+);
+
 const BACKGROUND_COLOR = [
   "rgb(176, 244, 179)",
   "rgb(119, 252, 233)",
@@ -26,20 +31,22 @@ const BACKGROUND_COLOR = [
 ];
 
 let ChartManager = new DoughnutChart({
-  points: Top10CountryOfArrivalPerCountryData,
+  points: top_10_country_of_arrival_data_pts,
   isCountryOfOrigin: false,
-  countryIso2: getQueryParam("countryIso2") as keyof typeof iso2,
+  // countryIso2: getQueryParam("countryIso2") as keyof typeof iso2,
 });
 ChartManager.setConfig(BACKGROUND_COLOR);
 ChartManager.Draw("pieplot-1");
 ChartManager.AddEventListener(
   "select-year",
+  "select-attribute",
   "number-first",
   "name-first",
   "img-first"
 );
 ChartManager.AddEventListener(
   "select-attribute",
+  "select-year",
   "number-first",
   "name-first",
   "img-first"

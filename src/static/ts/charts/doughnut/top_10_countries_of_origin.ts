@@ -30,12 +30,14 @@ ChartManager.setConfig(BACKGROUND_COLOR);
 ChartManager.Draw("pieplot-1");
 ChartManager.AddEventListener(
   "select-year",
+  "select-attribute",
   "number-first",
   "name-first",
   "img-first"
 );
 ChartManager.AddEventListener(
   "select-attribute",
+  "select-year",
   "number-first",
   "name-first",
   "img-first"

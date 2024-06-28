@@ -1,12 +1,14 @@
 function GetDomID(
   id: string
-): HTMLInputElement | HTMLAnchorElement | HTMLImageElement {
+): HTMLInputElement | HTMLAnchorElement | HTMLImageElement | HTMLElement {
   // Get DOM ID element
   let elem = document.getElementById(id);
+
   if (
     elem instanceof HTMLInputElement ||
     elem instanceof HTMLAnchorElement ||
-    elem instanceof HTMLImageElement
+    elem instanceof HTMLImageElement ||
+    elem instanceof HTMLElement
   ) {
     return elem;
   } else {

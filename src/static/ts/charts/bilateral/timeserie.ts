@@ -1,10 +1,14 @@
 import Chart from "chart.js/auto";
 import { lconf } from "../../main";
-import TLD from "../../dashboard/types";
 import { AppendOption, GetCtx, GetDomID } from "../../helpers/utils";
 import iso2 from "../../data/cntries_lst";
 import { generate_bilateral_url } from "./utils";
 import _ from "lodash";
+
+type TSType = {
+  number: number;
+  year: number;
+};
 
 AppendOption("select-country-from", iso2);
 AppendOption("select-country-to", iso2);
@@ -18,9 +22,9 @@ declare const refugees_ts: string;
 declare const asylium_seekers_ts: string;
 declare const people_of_concern_ts: string;
 
-const refugees_ts_json: TLD[] = JSON.parse(refugees_ts);
-const asylium_seekers_ts_json: TLD[] = JSON.parse(asylium_seekers_ts);
-const people_of_concern_ts_json: TLD[] = JSON.parse(people_of_concern_ts);
+const refugees_ts_json: TSType[] = JSON.parse(refugees_ts);
+const asylium_seekers_ts_json: TSType[] = JSON.parse(asylium_seekers_ts);
+const people_of_concern_ts_json: TSType[] = JSON.parse(people_of_concern_ts);
 
 const dataSet = [
   {

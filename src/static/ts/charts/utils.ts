@@ -25,13 +25,13 @@ function GetDomClass(cls: string): HTMLCollectionOf<Element> {
  * Retrieves the DOM input element with the specified ID.
  *
  * @param Id - The ID of the input element to retrieve.
- * @returns The DOM input element with the specified ID.
+ * @returns The DOM input element with the specified ID.ß
  * @throws Error if the input element with the specified ID doesn't exist.
  */
 function GetDomInputId(Id: string): HTMLInputElement {
   let elem = document.getElementById(Id);
-  if (elem instanceof HTMLInputElement) {
-    return elem;
+  if (elem instanceof HTMLElement) {
+    return elem as HTMLInputElement;
   } else {
     throw new Error(`The html element with Id=${Id} doesn't exist`);
   }
@@ -125,11 +125,12 @@ function FillFlags<T>(
  */
 async function FetchJsonFromUrl<T>(url: string) {
   console.log(`Fetching GET to ${url}`);
-  if (!isUrlAllowed(url)) {
-    throw new Error("URL is not allowed");
-  }
+  //if (!isUrlAllowed(url)) {
+  //  throw new Error("URL is not allowed");
+  //}
 
   const response = await fetch(url);
+  console.log(`Response status: ${response.status}`);
   const points = (await response.json()) as T[];
   return points;
 }

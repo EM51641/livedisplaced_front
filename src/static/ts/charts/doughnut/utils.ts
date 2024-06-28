@@ -74,22 +74,24 @@ class DoughnutChart {
    * @param FlagDomClass - The class name of the flag DOM element.
    */
   public async AddEventListener(
-    MutableId: string,
+    MainMutableId: string,
+    OtherMutableId: string,
     NumberLabelDomClass: string,
     NameLabelDomClass: string,
     FlagDomClass: string
   ) {
-    const ELEM = GetDomInputId(MutableId);
+    const ELEM = GetDomInputId(MainMutableId);
+    console.log(ELEM);
     ELEM.addEventListener("change", async (e: Event) => {
       const target = e.target as HTMLInputElement;
       let year: string;
       let category: string;
 
-      if (MutableId.startsWith("select-year")) {
+      if (MainMutableId.startsWith("select-year")) {
         year = target.value;
-        category = GetDomInputId(MutableId).value;
+        category = GetDomInputId(OtherMutableId).value;
       } else {
-        year = GetDomInputId(MutableId).value;
+        year = GetDomInputId(OtherMutableId).value;
         category = target.value;
       }
 
@@ -145,7 +147,11 @@ class DoughnutChart {
    * @returns The generated URL for the API endpoint.
    */
   private generateUrl(year: string, category: string): string {
-    return `${window.location.href}/api/v1/&iso_2=${this.countryIso2}&coo=${this.isCountryOfOrigin}&year=${year}&category=${category}`;
+    let url = `${window.location.href}api/v1/?`;
+    if (this.countryIso2) {
+      url = `${url}country=${this.countryIso2}`;
+    }
+    return `${url}&origin=${this.isCountryOfOrigin}&year=${year}&category=${category}&head=true`;
   }
 
   /**
