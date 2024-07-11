@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}
 <title>Reports</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dist/reports.css" />
+<link rel="stylesheet" type="text/css" href="dist/individual_reports.css" />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,11 +17,11 @@
 
 <!-- Requested Data-->
 <script>
-  const data = "{{top_inflow | tojson| safe}}";
-  const datas = "{{top_outflow | tojson| safe}}";
-  const total_inflow = "{{total_inflow | tojson| safe}}";
-  const total_outflow = "{{total_outflow | tojson| safe}}";
-  const geo = "{{ outflow_per_cntry|tojson|safe }}";
+  const top10InflowDataJson = '{{top_inflow | tojson| safe}}';
+  const top10OutflowDataJson = '{{top_outflow | tojson| safe}}';
+  const totalInflow = '{{total_inflow | tojson| safe}}';
+  const totalOutflow = '{{total_outflow | tojson| safe}}';
+  const geoOutflowGeoSituationJson = '{{ outflow_per_cntry|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -276,5 +276,5 @@
   </div>
 </div>
 {% endblock %} {% block script %}
-<script src="individual_reports.bundle.js" type="text/javascript"></script>
+<script src="dist/individual_reports.bundle.js" type="text/javascript"></script>
 {% endblock %}

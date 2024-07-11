@@ -147,11 +147,15 @@ class DoughnutChart {
    * @returns The generated URL for the API endpoint.
    */
   private generateUrl(year: string, category: string): string {
-    let url = `${window.location.href}api/v1/?`;
+    let url = `${window.location.protocol}//${window.location.host}/api/v1/?`;
+    console.log(this.isCountryOfOrigin);
     if (this.countryIso2) {
       url = `${url}country=${this.countryIso2}`;
     }
-    return `${url}&origin=${this.isCountryOfOrigin}&year=${year}&category=${category}&head=true`;
+    if (this.isCountryOfOrigin) {
+      url = `${url}&origin=true`;
+    }
+    return `${url}&year=${year}&category=${category}&head=true`;
   }
 
   /**

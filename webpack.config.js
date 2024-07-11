@@ -31,8 +31,8 @@ module.exports = {
       path.resolve(__dirname, "src/static/css/compliance_form.css"),
     ],
     home: [
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin.ts"),
       path.resolve(__dirname, "src/static/ts/charts/geo-maps/global_report_geo_chart.ts"),
       path.resolve(__dirname, "src/static/ts/charts/linechart/aggregated_global_displaced_data_charts.ts"),
       path.resolve(__dirname, "src/static/css/home.css"),
@@ -43,8 +43,8 @@ module.exports = {
       
     ],
     individual_reports: [
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts"),
+      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
       path.resolve(__dirname, "src/static/ts/charts/geo-maps/country_report_geo_chart.ts"),
       path.resolve( __dirname, "src/static/ts/charts/linechart/aggregated_country_displaced_data_origin_chart.ts"),
       path.resolve(__dirname, "src/static/css/individual_reports.css"),

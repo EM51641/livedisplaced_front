@@ -14,7 +14,7 @@ function global_url_generator(
   country: string | undefined,
   head: string | undefined
 ): string {
-  let url = `${window.location.href}api/v1/?`;
+  let url = `${window.location.protocol}//${window.location.host}/api/v1/?`;
 
   if (year) {
     url += `year=${year}&`;
