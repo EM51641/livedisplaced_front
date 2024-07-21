@@ -16,7 +16,7 @@ import iso2 from "../../data/cntries_lst";
  */
 type DoughnutManagerConfigParams = {
   points: DoughnutDataPoint[];
-  isCountryOfOrigin?: boolean;
+  isCountryOfOrigin: boolean;
   countryIso2?: keyof typeof iso2 | undefined;
 };
 
@@ -40,7 +40,7 @@ class DoughnutChart {
    */
   constructor(params: DoughnutManagerConfigParams) {
     this.points = params["points"];
-    this.isCountryOfOrigin = params["isCountryOfOrigin"] || true;
+    this.isCountryOfOrigin = params["isCountryOfOrigin"];
     this.countryIso2 = params["countryIso2"] || undefined;
     this.conf = _.cloneDeep(dconf);
   }
@@ -148,12 +148,11 @@ class DoughnutChart {
    */
   private generateUrl(year: string, category: string): string {
     let url = `${window.location.protocol}//${window.location.host}/api/v1/?`;
-    console.log(this.isCountryOfOrigin);
     if (this.countryIso2) {
       url = `${url}country=${this.countryIso2}`;
     }
-    if (this.isCountryOfOrigin) {
-      url = `${url}&origin=true`;
+    if (!this.isCountryOfOrigin) {
+      url = `${url}&origin=false`;
     }
     return `${url}&year=${year}&category=${category}&head=true`;
   }

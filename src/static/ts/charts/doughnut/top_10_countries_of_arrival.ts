@@ -7,7 +7,11 @@ import DoughnutChart from "./utils";
 AppendOption("select-attribute-1", coa_choices);
 AppendOption("select-year-1", years_choices);
 
-declare let Top10CountryOfArrivalData: DoughnutDataPoint[];
+declare let Top10CountryOfArrivalJson: string;
+let top_10_country_of_arrival_data_pts: DoughnutDataPoint[] = JSON.parse(
+  Top10CountryOfArrivalJson
+);
+
 const BACKGROUND_COLOR = [
   "rgb(176, 244, 179)",
   "rgb(119, 252, 233)",
@@ -23,7 +27,7 @@ const BACKGROUND_COLOR = [
 ];
 
 let ChartManager = new DoughnutChart({
-  points: Top10CountryOfArrivalData,
+  points: top_10_country_of_arrival_data_pts,
   isCountryOfOrigin: false,
 });
 ChartManager.setConfig(BACKGROUND_COLOR);

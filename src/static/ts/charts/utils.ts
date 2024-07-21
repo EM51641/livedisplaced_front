@@ -158,16 +158,22 @@ function AppendDataToId(Id: string, Data: Record<string, string>): void {
 /**
  * Retrieves the value of a query parameter from the current window location.
  * @param param - The name of the query parameter.
+ * @param default_param - The default returned value
  * @returns The value of the query parameter.
  */
-function getQueryParam(param: string): string {
+function getQueryParam(param: string, default_param?: string): string {
   /**
    * Represents the URL parameters extracted from the current window location.
    */
   const urlParams = new URLSearchParams(window.location.search);
   const paramValue = urlParams.get(param);
+
   if (!paramValue) {
-    throw Error("No value found");
+    if (default_param) {
+      return default_param;
+    } else {
+      throw Error("No value found");
+    }
   }
   return paramValue;
 }

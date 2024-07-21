@@ -41,6 +41,7 @@
       type="text/javascript"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 
     <!-- Google Analytics - Cookie settings -->
     <script>
@@ -48,9 +49,9 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        analytics_storage: "denied",
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
       });
     </script>
 
@@ -64,8 +65,8 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-      gtag("config", "G-GLTHNVKM5V");
+      gtag('js', new Date());
+      gtag('config', 'G-GLTHNVKM5V');
       const gtag_ = gtag;
     </script>
 
@@ -90,25 +91,25 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-center me-3"
+            class="collapse navbar-collapse justify-content-center me-mb-3"
             id="navbarNavAltMarkup"
           >
-            <ul class="navbar-nav ms-auto" style="position: absolute">
-              <li class="nav-item">
+            <ul class="navbar-nav">
+              <li class="general-bar nav-item">
                 <a
                   class="nav-link {% if nbar == 'home' %}active{% endif %}"
                   href="{{ url_for('root.web.overview_app.controller') }}"
                   >Home</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="general-bar nav-item">
                 <a
                   class="nav-link {% if nbar == 'dashboard' %}active{% endif %}"
-                  href="{{ url_for('root.web.flux_between_cntries_app.controller', country_of_destination_iso_2='UA', country_of_origin_iso_2='US') }}"
+                  href="{{ url_for('root.web.flux_between_cntries_app.controller') }}"
                   >Dashboard</a
                 >
               </li>
-              <li class="nav-item">
+              <li class="general-bar nav-item">
                 <a
                   class="nav-link {% if nbar == 'report' %}active{% endif %}"
                   href="{{ url_for('root.web.countries_report_app.controller', country_iso_2='UA') }}"
@@ -118,7 +119,7 @@
             </ul>
             <ul class="navbar-nav ms-auto">
               {% if current_user.is_authenticated %}
-              <li class="nav-item">
+              <li class="user-bar nav-item">
                 <a
                   class="nav-link"
                   href="{{url_for('root.web.user.account_logout_app.controller')}}"
@@ -126,7 +127,7 @@
                   Logout
                 </a>
               </li>
-              <li>
+              <li class="user-bar">
                 <a
                   class="nav-link"
                   href="{{url_for('root.web.user.account_settings_app.controller')}}"
@@ -134,13 +135,13 @@
                   Settings
                 </a>
               </li>
-              <li>
+              <li class="user-bar">
                 <a class="nav-link"
                   >Welcome back {{current_user.first_name | title}}</a
                 >
               </li>
               {% else %}
-              <li class="nav-item">
+              <li class="user-bar nav-item">
                 <a
                   class="nav-link"
                   href="{{url_for('root.web.user.account_login_app.controller')}}"
@@ -148,7 +149,7 @@
                   Login
                 </a>
               </li>
-              <li>
+              <li class="user-bar">
                 <a
                   class="nav-link"
                   href="{{url_for('root.web.user.account_registration_app.controller')}}"

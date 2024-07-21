@@ -94,7 +94,7 @@ class LineChartManager {
    * @returns The generated URL.
    */
   private generateUrl(category: string | undefined): string {
-    let url = `${window.location.protocol}//${window.location.hostname}api/v1/chart?`;
+    let url = `${window.location.protocol}//${window.location.hostname}/api/v1/chart?`;
 
     if (category) {
       url = `${url}&category=${category}`;

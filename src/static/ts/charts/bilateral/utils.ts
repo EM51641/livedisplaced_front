@@ -11,7 +11,7 @@ function generate_bilateral_url(
   from_country_iso2: string,
   to_country_iso2: string
 ): string {
-  return `${window.location.hostname}/v1/api/?from_country_iso2=${from_country_iso2}&to_country_iso2=${to_country_iso2}`;
+  return `${window.location.protocol}//${window.location.host}/dashboard?coo=${from_country_iso2}&coa=${to_country_iso2}`;
 }
 
 export { generate_bilateral_url };

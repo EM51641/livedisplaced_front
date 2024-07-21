@@ -2,6 +2,14 @@
   color: white !important;
 }
 
+.general-bar {
+  justify-content: center;
+}
+
+.user-bar {
+  justify-content: end;
+}
+
 body {
   font-family: "Roboto", sans-serif;
 }

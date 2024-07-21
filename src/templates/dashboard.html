@@ -17,9 +17,9 @@
 
 <!-- Requested Data-->
 <script>
-  const refugees_ts = "{{ refugees_ts|tojson|safe }}";
-  const asylium_seekers_ts = "{{ asylium_seekers_ts|tojson|safe }}";
-  const people_of_concern_ts = "{{ people_of_concern_ts|tojson|safe }}";
+  const refugeesTs = '{{ refugees_ts|tojson|safe }}';
+  const asyliumSeekersTs = '{{ asylium_seekers_ts|tojson|safe }}';
+  const peopleOfConcernTs = '{{ people_of_concern_ts|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -74,7 +74,9 @@
                   class="form-select"
                   aria-label="Default select example"
                 >
-                  <option selected value="{{country_of_arrival.iso_2}}">{{country_of_arrival.name}}</option>
+                  <option selected value="{{country_of_arrival.iso_2}}">
+                    {{country_of_arrival.name}}
+                  </option>
                 </select>
               </div>
             </div>

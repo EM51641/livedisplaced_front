@@ -1,6 +1,6 @@
 // Geo Chart
 import { coo_choices } from "../../data/coa_coo_filter";
-import { geo_choices_report } from "../../data/situations_lst";
+import { geo_choices_home } from "../../data/situations_lst";
 import { years_choices } from "../../data/tot_arrival_filter";
 import { DIST, GoogleGeoConfig } from "../../helpers/chart";
 import { AppendOption, GetDomID } from "../../helpers/utils";
@@ -11,7 +11,7 @@ import iso2 from "../../data/cntries_lst";
 
 AppendOption("select-attribute-2", coo_choices);
 AppendOption("select-year-2", years_choices);
-AppendOption("select-coo-coa", geo_choices_report);
+AppendOption("select-coo-coa", geo_choices_home);
 
 /**
  * Updates the chart with the new data.
@@ -52,7 +52,7 @@ google.charts.load("current", {
 // Launch the promise
 google.charts.setOnLoadCallback(() => {
   {
-    const country = getQueryParam("country_iso_2") as keyof typeof iso2;
+    const country = getLastPathSegment() as keyof typeof iso2;
 
     let chart = new GoogleGeoConfig<DIST>(points, geo_option, "geo-map-1");
     chart.SetTable("number");
@@ -70,7 +70,7 @@ google.charts.setOnLoadCallback(() => {
     htmlelem_year.addEventListener("change", function (event: Event) {
       // Change year
       const year = event.target as HTMLInputElement;
-      const category = event.target as HTMLInputElement;
+      const category = GetDomID("select-attribute-2") as HTMLInputElement;
       const origin = GetDomID("select-coo-coa") as HTMLInputElement;
 
       updatechart(year.value, category.value, origin.value, country, chart);
@@ -78,8 +78,8 @@ google.charts.setOnLoadCallback(() => {
 
     htmlelem_coo.addEventListener("change", function (event: Event) {
       // Change country of origin
-      const year = event.target as HTMLInputElement;
-      const category = event.target as HTMLInputElement;
+      const year = GetDomID("select-year-2") as HTMLInputElement;
+      const category = GetDomID("select-attribute-2") as HTMLInputElement;
       const origin = event.target as HTMLInputElement;
 
       updatechart(year.value, category.value, origin.value, country, chart);

@@ -1,15 +1,17 @@
-import _, { StringNullableChain } from "lodash";
+import _ from "lodash";
 import { LineChartDataPoint } from "./type";
 import { LineChartManager } from "./utils";
-import { AppendDataToId, getQueryParam } from "../utils";
+import { AppendDataToId, getLastPathSegment } from "../utils";
 import iso2 from "../../data/cntries_lst";
+import { coo_choices } from "../../data/coa_coo_filter";
 
-AppendDataToId("select-country", iso2); // Append the select
+AppendDataToId("select-category", coo_choices);
+AppendDataToId("select-category-1", coo_choices);
 
 declare let totalOutflow: string;
 let data_outflow: LineChartDataPoint[] = JSON.parse(totalOutflow);
 
-const countryIso2 = getQueryParam("country_iso_2") as keyof typeof iso2;
+const countryIso2 = getLastPathSegment() as keyof typeof iso2;
 
 let ChartManager = new LineChartManager({
   points: data_outflow,
@@ -19,7 +21,6 @@ let ChartManager = new LineChartManager({
 
 ChartManager.setConfig();
 ChartManager.Draw("line-1");
-ChartManager.AddEventListener("select-countryIso2");
 ChartManager.AddEventListener("select-category");
 
 declare let totalInflow: string;

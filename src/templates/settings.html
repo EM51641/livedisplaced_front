@@ -4,7 +4,7 @@
 <link
   rel="stylesheet"
   type="text/css"
-  href="{{ url_for('static', filename='dist/settings.css')}}"
+  href="{{ url_for('static', filename='settings.css')}}"
 />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
@@ -25,7 +25,7 @@
   <div class="d-flex display justify-content-center align-items-center">
     <div class="banner shadow-lg rounded">
       <ul class="row nav nav-tabs m-auto" id="myTab" role="tablist">
-        <li class="nav-item col-4 p-0" role="presentation">
+        <li class="nav-item col-6 p-0" role="presentation">
           <button
             class="nav-link active"
             id="home-tab"
@@ -39,7 +39,7 @@
             Profile
           </button>
         </li>
-        <li class="nav-item col-4 p-0" role="presentation">
+        <li class="nav-item col-6 p-0" role="presentation">
           <button
             class="nav-link"
             id="profile-tab"
@@ -53,20 +53,6 @@
             Security
           </button>
         </li>
-        <li class="nav-item col-4 p-0" role="presentation">
-          <button
-            class="nav-link"
-            id="contact-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#contact"
-            type="button"
-            role="tab"
-            aria-controls="contact"
-            aria-selected="false"
-          >
-            Contact
-          </button>
-        </li>
       </ul>
       <div class="tab-content m-5" id="myTabContent">
         <div
@@ -75,10 +61,47 @@
           role="tabpanel"
           aria-labelledby="home-tab"
         >
-          <div class="EmailRow mb-5">
+          {% with messages =
+          get_flashed_messages(category_filter=["flash-errors"]) %} {% if
+          messages %}
+          <div class="col-12">
+            <ul
+              class="justify-content-center mb-3 flashes"
+              style="list-style: none"
+            >
+              {% for message in messages %}
+              <li class="flash-error">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %} {% endwith %} {% with messages =
+          get_flashed_messages(category_filter=["flash-success"]) %} {% if
+          messages %}
+          <ul
+            class="row justify-content-center mb-3 flashes"
+            style="list-style: none"
+          >
+            {% for message in messages %}
+            <li class="flash-success">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+          <div class="LinkedAccountRow mb-5">
             <div class="mrow row">
-              <div class="col-10">
-                <div class="input-group mb-5 row m-auto">
+              <div class="col-12">
+                <div class="input-group row m-auto">
+                  {% if current_user.oauth %}
+                  <div class="input-group-prepend col-4 p-0">
+                    <div class="input-group-text">Linked Account</div>
+                  </div>
+                  <input
+                    class="form-control col-8"
+                    type="text"
+                    id="staticemail"
+                    placeholder="{{current_user.oauth[0].provider | title}}"
+                    readonly
+                  />
+                  {% else %}
                   <div class="input-group-prepend col-4 p-0">
                     <div class="input-group-text">Email</div>
                   </div>
@@ -86,55 +109,24 @@
                     class="form-control col-8"
                     type="text"
                     id="staticemail"
-                    placeholder="{{current_user.email}}"
+                    placeholder="None"
                     readonly
                   />
-                </div>
-              </div>
-              <div class="col-2">
-                <button class="btn btn-warning">Change</button>
-              </div>
-            </div>
-            <div class="LinkedAccountRow mb-5">
-              <div class="mrow row">
-                <div class="col-10">
-                  <div class="input-group row m-auto">
-                    <div class="input-group-prepend col-4 p-0">
-                      <div class="input-group-text">Linked Account</div>
-                    </div>
-                    {% if current_user.oauth %}
-                    <input
-                      class="form-control col-8"
-                      type="text"
-                      id="staticemail"
-                      placeholder="{{current_user.oauth[0].provider | title}}"
-                      readonly
-                    />
-                    {% else %}
-                    <input
-                      class="form-control col-8"
-                      type="text"
-                      id="staticemail"
-                      placeholder="None"
-                      readonly
-                    />
-                    {% endif %}
-                  </div>
-                </div>
-                <div class="col-2">
-                  <button class="btn btn-warning">Change</button>
+                  {% endif %}
                 </div>
               </div>
             </div>
-            <div class="DeleteAccountRow mb-5">
-              <div class="d-flex col-12 justify-content-center mb-5">
-                <form method="POST" action="">
-                  {{ deletion_form.hidden_tag() }} {{
-                  deletion_form.submit(class="btn btn-danger",
-                  onclick="confirm('Are you sure you want to delete your
-                  account.')") }}
-                </form>
-              </div>
+          </div>
+          <div class="DeleteAccountRow mb-5">
+            <div class="d-flex col-12 justify-content-center mb-5">
+              <form
+                id="deleteAccountForm"
+                method="POST"
+                action="{{url_for('root.web.user.account_deletion_app.controller')}}"
+              >
+                {{ deletion_form.hidden_tag() }}
+                {{deletion_form.submit(class="btn btn-danger") }}
+              </form>
             </div>
           </div>
         </div>
@@ -144,36 +136,61 @@
           role="tabpanel"
           aria-labelledby="profile-tab"
         >
-          <div class="mrow row mb-5">
-            <div class="col-10">
-              <div class="input-group row m-auto">
-                <div class="input-group-prepend col-5 p-0">
-                  <div class="input-group-text">Password</div>
+          <div class="col-12 justify-content-center mb-5">
+            <form
+              method="POST"
+              action="{{url_for('root.web.user.account_edit_password_app.controller')}}"
+            >
+              {{ edit_password_form.hidden_tag() }}
+              <div class="input-group row m-auto mb-4">
+                <div class="input-group-prepend col-4 p-0">
+                  <div class="input-group-text">Current Password</div>
                 </div>
-                <input
-                  class="form-control col-9"
-                  type="password"
-                  id="staticpassword"
-                  placeholder="########"
-                  readonly
-                />
+                {{ edit_password_form.current_password(class="form-control
+                col-8", placeholder="Current password", type="password",
+                id="InputCurrentPassword") }}
               </div>
-            </div>
-            <div class="col-2">
-              <button class="btn btn-warning">Change</button>
-            </div>
+              <div class="input-group row m-auto mb-4">
+                <div class="input-group-prepend col-4 p-0">
+                  <div class="input-group-text">New Password</div>
+                </div>
+                {{ edit_password_form.new_password(class="form-control col-8",
+                placeholder="New Password", type="password",
+                id="InputNewPassword") }}
+              </div>
+              <div class="input-group row m-auto mb-4">
+                <div class="input-group-prepend col-4 p-0">
+                  <div class="input-group-text">Password Confirmation</div>
+                </div>
+                {{ edit_password_form.new_password_2(class="form-control col-8",
+                placeholder="Password Confirmation", type="password",
+                id="InputNewPassword2") }}
+              </div>
+              <div class="d-flex justify-content-center">
+                {{edit_password_form.submit(class="btn btn-warning") }}
+              </div>
+            </form>
           </div>
-        </div>
-        <div
-          class="tab-pane fade"
-          id="contact"
-          role="tabpanel"
-          aria-labelledby="contact-tab"
-        >
-          ...
         </div>
       </div>
     </div>
   </div>
 </div>
+{% endblock %} {% block script %}
+<script>
+  document.getElementById('deleteAccountForm').onsubmit = function (event) {
+    // Prevent form submission
+    event.preventDefault();
+
+    // Show confirmation dialog
+    var userConfirmed = confirm(
+      'Are you sure you want to delete your account?'
+    );
+
+    // If the user clicks "OK", submit the form
+    if (userConfirmed) {
+      this.submit();
+    }
+  };
+</script>
 {% endblock %}

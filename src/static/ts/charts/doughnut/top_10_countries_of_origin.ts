@@ -8,7 +8,11 @@ import DoughnutChart from "./utils";
 AppendOption("select-attribute", coo_choices);
 AppendOption("select-year", years_choices);
 
-declare let Top10CountryOfOriginData: DoughnutDataPoint[];
+declare let Top10CountryOfOriginJson: string;
+let top_10_country_of_origin_data_pts: DoughnutDataPoint[] = JSON.parse(
+  Top10CountryOfOriginJson
+);
+
 const BACKGROUND_COLOR = [
   "rgb(176, 244, 179)",
   "rgb(119, 252, 233)",
@@ -24,7 +28,8 @@ const BACKGROUND_COLOR = [
 ];
 
 let ChartManager = new DoughnutChart({
-  points: Top10CountryOfOriginData,
+  points: top_10_country_of_origin_data_pts,
+  isCountryOfOrigin: true,
 });
 ChartManager.setConfig(BACKGROUND_COLOR);
 ChartManager.Draw("pieplot-1");
