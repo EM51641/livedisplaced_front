@@ -17,9 +17,9 @@
 
 <!-- Requested Data-->
 <script>
-  const refugeesTs = "{{ refugees_ts|tojson|safe }}";
-  const asyliumSeekersTs = "{{ asylium_seekers_ts|tojson|safe }}";
-  const peopleOfConcernTs = "{{ people_of_concern_ts|tojson|safe }}";
+  const refugeesTs = '{{ refugees_ts|tojson|safe }}';
+  const asyliumSeekersTs = '{{ asylium_seekers_ts|tojson|safe }}';
+  const peopleOfConcernTs = '{{ people_of_concern_ts|tojson|safe }}';
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">
@@ -114,5 +114,5 @@
   </div>
 </div>
 {% endblock %} {% block script %}
-<script src="dist/dashboard.bundle.js" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='dashboard.bundle.js') }}" type="text/javascript"></script>
 {% endblock %}
