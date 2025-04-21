@@ -78,7 +78,7 @@ class DoughnutChart {
     OtherMutableId: string,
     NumberLabelDomClass: string,
     NameLabelDomClass: string,
-    FlagDomClass: string
+    FlagDomClass: string,
   ) {
     const ELEM = GetDomInputId(MainMutableId);
     console.log(ELEM);
@@ -102,7 +102,7 @@ class DoughnutChart {
       this.fillLabelsAndFlags(
         NumberLabelDomClass,
         NameLabelDomClass,
-        FlagDomClass
+        FlagDomClass,
       );
 
       this.updateChart();
@@ -167,13 +167,13 @@ class DoughnutChart {
   private fillLabelsAndFlags(
     NumberLabelDomClass: string,
     NameLabelDomClass: string,
-    FlagDomClass: string
+    FlagDomClass: string,
   ): void {
     FillLabels<DoughnutDataPoint>(
       NumberLabelDomClass,
       this.points,
       "number",
-      ""
+      "",
     );
     FillLabels<DoughnutDataPoint>(NameLabelDomClass, this.points, "name", "");
     FillFlags<DoughnutDataPoint>(FlagDomClass, this.points, "iso_2", "name");

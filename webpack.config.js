@@ -4,58 +4,73 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-TEMPLATES_LIST = fs.readdirSync('./src/templates', {withFileTypes: true})
-              .filter(item => !item.isDirectory())
-              .map(item => item.name);
+TEMPLATES_LIST = fs
+  .readdirSync("./src/templates", { withFileTypes: true })
+  .filter((item) => !item.isDirectory())
+  .map((item) => item.name);
 
 module.exports = {
   mode: "development",
   entry: {
-    login:[
-      path.resolve(__dirname, "src/static/css/login.css"),
-    ],
-    register:[
-      path.resolve(__dirname, "src/static/css/register.css"),
-    ],
-    password_lost_request:[
+    login: [path.resolve(__dirname, "src/static/css/login.css")],
+    register: [path.resolve(__dirname, "src/static/css/register.css")],
+    password_lost_request: [
       path.resolve(__dirname, "src/static/css/password_lost_request.css"),
     ],
-    update_password:[
+    update_password: [
       path.resolve(__dirname, "src/static/css/update_password.css"),
     ],
-    settings:[
-      path.resolve(__dirname, "src/static/css/settings.css"),
-    ],
-    terms:
-    [
-      path.resolve(__dirname, "src/static/css/compliance_form.css"),
-    ],
+    settings: [path.resolve(__dirname, "src/static/css/settings.css")],
+    terms: [path.resolve(__dirname, "src/static/css/compliance_form.css")],
     home: [
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/geo-maps/global_report_geo_chart.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/linechart/aggregated_global_displaced_data_charts.ts"),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/doughnut/top_10_countries_of_arrival.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/doughnut/top_10_countries_of_origin.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/geo-maps/global_report_geo_chart.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/linechart/aggregated_global_displaced_data_charts.ts",
+      ),
       path.resolve(__dirname, "src/static/css/home.css"),
     ],
-    dashboard:[
+    dashboard: [
       path.resolve(__dirname, "src/static/ts/charts/bilateral/timeserie.ts"),
       path.resolve(__dirname, "src/static/css/dashboard.css"),
-      
     ],
     individual_reports: [
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/geo-maps/country_report_geo_chart.ts"),
-      path.resolve(__dirname, "src/static/ts/charts/linechart/aggregated_country_displaced_data_origin_chart.ts"),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/doughnut/top_10_countries_of_origin_per_country.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/doughnut/top_10_countries_of_arrival_per_country.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/geo-maps/country_report_geo_chart.ts",
+      ),
+      path.resolve(
+        __dirname,
+        "src/static/ts/charts/linechart/aggregated_country_displaced_data_origin_chart.ts",
+      ),
       path.resolve(__dirname, "src/static/ts/charts/scripts/report.ts"),
       path.resolve(__dirname, "src/static/css/individual_reports.css"),
     ],
     base: [
       path.resolve(__dirname, "src/static/ts/base/base.ts"),
-      path.resolve(__dirname, "src/static/css/base.css")
+      path.resolve(__dirname, "src/static/css/base.css"),
     ],
   },
-  watch: true,
+  watch: false,
   watchOptions: {
     aggregateTimeout: 200,
     poll: 1000,
@@ -83,7 +98,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.resolve(__dirname, 'dist'),
+      directory: path.resolve(__dirname, "dist"),
     },
     compress: false,
     port: 9230,
@@ -100,7 +115,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "./dist",
+    publicPath: "https://your-cdn-domain.com/dist/",
     filename: "[name].bundle.js",
     chunkFilename: "[name].js",
   },

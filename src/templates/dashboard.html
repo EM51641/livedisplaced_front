@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}
 <title>Dashboard</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dist/dashboard.css" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css')}}" />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -17,9 +17,9 @@
 
 <!-- Requested Data-->
 <script>
-  const refugeesTs = '{{ refugees_ts|tojson|safe }}';
-  const asyliumSeekersTs = '{{ asylium_seekers_ts|tojson|safe }}';
-  const peopleOfConcernTs = '{{ people_of_concern_ts|tojson|safe }}';
+  const refugeesTs = "{{ refugees_ts|tojson|safe }}";
+  const asyliumSeekersTs = "{{ asylium_seekers_ts|tojson|safe }}";
+  const peopleOfConcernTs = "{{ people_of_concern_ts|tojson|safe }}";
 </script>
 {% endblock %} {% block content %}
 <div class="top-cont container-fluid p-0">

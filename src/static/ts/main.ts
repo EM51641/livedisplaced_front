@@ -1,6 +1,5 @@
 import { ChartConfiguration } from "chart.js/auto";
 
-
 // Configure the scales
 const scales = {
   x: {
@@ -24,7 +23,7 @@ const scales = {
       callback: function (
         label: number,
         index: number,
-        labels: string[]
+        labels: string[],
       ): string {
         if (label >= 1000000) {
           return label / 1000000 + "M";
@@ -109,7 +108,7 @@ const dconf: ChartConfiguration<"doughnut"> = {
   plugins: [],
 };
 
-const geo_option: google.visualization.GeoChartOptions = { 
+const geo_option: google.visualization.GeoChartOptions = {
   backgroundColor: "transparent",
   colorAxis: {
     colors: ["#2E7F18", "#45731E", "#675E24", "#8D472B", "#B13433", "#C82538"],

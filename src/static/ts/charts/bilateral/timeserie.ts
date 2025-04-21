@@ -20,7 +20,7 @@ let countryOfArrivalIso = getQueryParam("coa", "US");
 
 htmlElemGo.href = generate_bilateral_url(
   countryOfOriginIso,
-  countryOfArrivalIso
+  countryOfArrivalIso,
 );
 
 let htmlElemCountryOfOrigin = GetDomID("select-country-from");
@@ -88,10 +88,10 @@ htmlElemCountryOfOrigin.addEventListener(
       originFlagCountry.src = `https://flagcdn.com/h240/${originCountry.value.toLowerCase()}.png`;
       htmlElemGo.href = generate_bilateral_url(
         originCountry.value,
-        arrivalCountry.value
+        arrivalCountry.value,
       );
     }
-  }
+  },
 );
 
 htmlElemCountryOfArrival.addEventListener(
@@ -106,10 +106,10 @@ htmlElemCountryOfArrival.addEventListener(
       originFlagCountry.src = `https://flagcdn.com/h240/${arrivalCountry.value.toLowerCase()}.png`;
       htmlElemGo.href = generate_bilateral_url(
         originCountry.value,
-        arrivalCountry.value
+        arrivalCountry.value,
       );
     }
-  }
+  },
 );
 
 // Plot

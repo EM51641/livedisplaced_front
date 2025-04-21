@@ -123,6 +123,7 @@
                 id="deleteAccountForm"
                 method="POST"
                 action="{{url_for('root.web.user.account_deletion_app.controller')}}"
+                onsubmit="return confirmDelete(event)"
               >
                 {{ deletion_form.hidden_tag() }}
                 {{deletion_form.submit(class="btn btn-danger") }}
@@ -178,19 +179,12 @@
 </div>
 {% endblock %} {% block script %}
 <script>
-  document.getElementById('deleteAccountForm').onsubmit = function (event) {
-    // Prevent form submission
-    event.preventDefault();
-
-    // Show confirmation dialog
-    var userConfirmed = confirm(
-      'Are you sure you want to delete your account?'
-    );
-
-    // If the user clicks "OK", submit the form
-    if (userConfirmed) {
-      this.submit();
+  function confirmDelete(event) {
+    if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        event.preventDefault();
+        return false;
     }
-  };
+    return true;
+  }
 </script>
 {% endblock %}

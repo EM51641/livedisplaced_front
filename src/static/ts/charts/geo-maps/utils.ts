@@ -12,7 +12,7 @@ function global_url_generator(
   category: string | undefined,
   origin: string | undefined,
   country: string | undefined,
-  head: string | undefined
+  head: string | undefined,
 ): string {
   let url = `${window.location.protocol}//${window.location.host}/api/v1/?`;
 

@@ -26,7 +26,7 @@ async function updatechart(
   category: string,
   origin: string,
   country: string,
-  chart: GoogleGeoConfig<DIST>
+  chart: GoogleGeoConfig<DIST>,
 ) {
   const url = global_url_generator(year, category, origin, country, undefined);
   points = await FetchJsonFromUrl<DIST>(url);

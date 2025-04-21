@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}
 <title>Home</title>
 {% endblock %} {% block style %}
-<link rel="stylesheet" type="text/css" href="dist/home.css" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css')}}" />
 {% endblock %} {% block dependencies %}
 <!-- Google Geomap Tag-->
 <script
@@ -10,10 +10,10 @@
 ></script>
 <!-- Requested Data-->
 <script>
-  const TotalTrafficJson = '{{total|tojson|safe}}';
-  const GeoTrafficJson = '{{geo|tojson|safe}}';
-  const Top10CountryOfArrivalJson = '{{coa|tojson|safe}}';
-  const Top10CountryOfOriginJson = '{{coo|tojson|safe}}';
+  const TotalTrafficJson = "{{total|tojson|safe}}";
+  const GeoTrafficJson = "{{geo|tojson|safe}}";
+  const Top10CountryOfArrivalJson = "{{coa|tojson|safe}}";
+  const Top10CountryOfOriginJson = "{{coo|tojson|safe}}";
 </script>
 {% endblock %} {% block content %}
 <div class="container-fluid p-0">
@@ -210,5 +210,5 @@
   </div>
 </div>
 {% endblock %} {% block script %}
-<script src="dist/home.bundle.js" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='home.bundle.js')}}" type="text/javascript"></script>
 {% endblock %}

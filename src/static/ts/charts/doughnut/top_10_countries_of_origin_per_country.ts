@@ -40,12 +40,12 @@ ChartManager.AddEventListener(
   "select-attribute-1",
   "number-second",
   "name-second",
-  "img-second"
+  "img-second",
 );
 ChartManager.AddEventListener(
   "select-attribute-1",
   "select-year-1",
   "number-second",
   "name-second",
-  "img-second"
+  "img-second",
 );

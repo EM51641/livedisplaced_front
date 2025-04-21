@@ -95,12 +95,12 @@ class LineChartManager {
    */
   private generateUrl(category: string | undefined): string {
     let url = `${window.location.protocol}//${window.location.hostname}`;
-    
+
     // Add port if it exists
     if (window.location.port) {
       url = `${url}:${window.location.port}`;
     }
-    
+
     url = `${url}/api/v1/chart?`;
 
     if (category) {

@@ -16,7 +16,7 @@ async function updatechart(
   year: string,
   category: string,
   origin: string,
-  chart: GoogleGeoConfig<DIST>
+  chart: GoogleGeoConfig<DIST>,
 ) {
   // Change attribute
 
@@ -25,7 +25,7 @@ async function updatechart(
     category,
     origin,
     undefined,
-    undefined
+    undefined,
   );
   points = await FetchJsonFromUrl<DIST>(url);
   chart.data = points;

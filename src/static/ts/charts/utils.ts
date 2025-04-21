@@ -73,7 +73,7 @@ function FillLabels<T>(
   cls: string,
   array: T[],
   val: keyof T,
-  except: string
+  except: string,
 ): void {
   let slices = GetDomClass(cls);
 
@@ -100,14 +100,14 @@ function FillFlags<T>(
   cls: string,
   array: T[],
   val: keyof T,
-  alt: keyof T
+  alt: keyof T,
 ): void {
   let slices = GetDomClass(cls) as HTMLCollectionOf<HTMLImageElement>;
 
   for (let i = 0; i < slices.length; i++) {
     if (i < array.length && array[i][val]) {
       slices[i].src = `https://flagcdn.com/${String(
-        array[i][val]
+        array[i][val],
       ).toLowerCase()}.svg`;
       slices[i].alt = String(array[i][alt]);
     } else {

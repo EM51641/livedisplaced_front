@@ -10,7 +10,7 @@ AppendOption("select-year", years_choices);
 
 declare let Top10CountryOfOriginJson: string;
 let top_10_country_of_origin_data_pts: DoughnutDataPoint[] = JSON.parse(
-  Top10CountryOfOriginJson
+  Top10CountryOfOriginJson,
 );
 
 const BACKGROUND_COLOR = [
@@ -38,12 +38,12 @@ ChartManager.AddEventListener(
   "select-attribute",
   "number-first",
   "name-first",
-  "img-first"
+  "img-first",
 );
 ChartManager.AddEventListener(
   "select-attribute",
   "select-year",
   "number-first",
   "name-first",
-  "img-first"
+  "img-first",
 );

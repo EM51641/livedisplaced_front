@@ -19,7 +19,7 @@ type GRow = {
     },
     {
       v: number;
-    }
+    },
   ];
 };
 
@@ -35,7 +35,7 @@ type GTable = {
       id: "Population Concerned";
       label: "Population Concerned";
       type: "number";
-    }
+    },
   ];
   rows: GRow[];
 };
@@ -69,7 +69,7 @@ class GoogleGeoConfig<T extends { iso_2: keyof typeof iso2 | null }> {
   constructor(
     data: T[],
     options: google.visualization.GeoChartOptions,
-    id_elem: string
+    id_elem: string,
   ) {
     this.data = data;
     this.options = options;
@@ -109,7 +109,7 @@ class GoogleGeoConfig<T extends { iso_2: keyof typeof iso2 | null }> {
     // callback function to draw the geo chart
 
     var map = new google.visualization.GeoChart(
-      document.getElementById(this.id_elem) as HTMLElement
+      document.getElementById(this.id_elem) as HTMLElement,
     );
     var data = new google.visualization.DataTable(this.dataconf);
     map.draw(data, this.options);
